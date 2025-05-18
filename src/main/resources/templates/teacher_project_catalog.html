@@ -187,6 +187,29 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
+        .table-button-search {
+            text-align: center;
+        }
+
+        .table-button-search button {
+            background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .table-button-search button:hover {
+            background-color: #e08d00;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
         .table-body td:last-child {
             width: 120px; /* Фиксированная ширина для колонки с кнопкой */
         }
@@ -221,20 +244,28 @@
                             <th>С:</th>
                             <th>По:</th>
                             <th>Поиск (По названию или ключевым словам)</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-<!--                        <tr>-->
-<!--                            <td>-->
-<!--                                <input type="date" th:field="*{}">-->
-<!--                            </td>-->
-<!--                            <td>-->
-<!--                                <input type="date" th:field="*{}">-->
-<!--                            </td>-->
-<!--                            <td>-->
-<!--                                <input type="text" th:field="*{}">-->
-<!--                            </td>-->
-<!--                        </tr>-->
+                        <tr>
+                            <form th:action="@{teacher/main/applyFilter}" method="post" th:object="${search}">
+                                <td>
+                                    <input type="date" id="startDateFilter">
+                                </td>
+                                <td>
+                                    <input type="date" id="endDateFilter">
+                                </td>
+                                <td>
+                                    <input type="text" th:field="*{search}">
+                                </td>
+                                <td>
+                                    <div class="table-button-search">
+                                        <button type="button">Найти</button>
+                                    </div>
+                                </td>
+                            </form>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -250,23 +281,23 @@
                         </tr>
                     </thead>
                     <tbody class="table-body">
-<!--                        <tr th:each="projectDTO : ${projectsList}" th:if="${!projectsList.empty}">-->
-<!--                            <td th:text = "${projectDTO.name}"></td>-->
-<!--                            <td th:each=" authorName : ${projectDTO.authorsNames}" th:text += "${authorName} + ' '"></td>-->
-<!--                            <td th:text = "${projectDTO.publicationDate}"></td>-->
-<!--                            <td th:text = "${projectDTO.teacherName}"></td>-->
-<!--                            <td>-->
-<!--                                <div class="table-button-open-nir">-->
-<!--                                    &lt;!&ndash; <form th:action="@{/teacher/main/nir"} method="get"> &ndash;&gt;-->
-<!--                                    <form th:data-id="@{projectDTO.id}" method="get">-->
-<!--                                        <button>Открыть</button>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </td>-->
-<!--                        </tr>-->
-<!--                        <tr class="empty-row" th:if="${projectsList.empty}">-->
-<!--                            <td colspan="6">Нет данных для отображения</td>-->
-<!--                        </tr>-->
+                        <tr th:each="projectDTO : ${projectsList}" th:if="${!projectsList.empty}">
+                            <td th:text = "${projectDTO.name}"></td>
+                            <td th:each=" authorName : ${projectDTO.authorsNames}" th:text += "${authorName} + ' '"></td>
+                            <td th:text = "${projectDTO.publicationDate}"></td>
+                            <td th:text = "${projectDTO.teacherName}"></td>
+                            <td>
+                                <div class="table-button-open-nir">
+                                    <!-- <form th:action="@{/teacher/main/nir"} method="get"> -->
+                                    <form th:data-id="@{projectDTO.id}" method="get">
+                                        <button type="button">Открыть</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="empty-row" th:if="${projectsList.empty}">
+                            <td colspan="6">Нет данных для отображения</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
