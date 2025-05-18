@@ -13,13 +13,13 @@ import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
-public class ProjectViewService {
+public class ProjectManagmentService {
 
     private final ProjectService projectService;
     private final TeacherService teacherService;
     private final StudentService studentService;
 
-    public ProjectDTO getProjectDTO(Long id) {
+    public ProjectDTO getProjectById(Long id) {
         Project foundProject = projectService.getProjectById(id);
 
         return ProjectToProjectDTOConverter.convertProjectToProjectDTO(foundProject);

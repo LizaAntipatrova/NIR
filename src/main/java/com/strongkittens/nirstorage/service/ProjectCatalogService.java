@@ -32,7 +32,7 @@ public class ProjectCatalogService {
         return projectDTOS;
     }
 
-    public List<ProjectDTO> getTeachersProject(Long teacherId) {
+    public List<ProjectDTO> getTeachersProjectByTeacherId(Long teacherId) {
         return projectService.getProjectsByTeacherId(teacherId).stream()
                 .map(ProjectToProjectDTOConverter::convertProjectToProjectDTO)
                 .toList();

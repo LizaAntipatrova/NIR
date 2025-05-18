@@ -17,7 +17,7 @@ public class ProfileStudentService {
     private final StudentService studentService;
     private final ProjectService projectService;
 
-    public StudentDTO getStudentDTO(Long id) {
+    public StudentDTO getStudentByID(Long id) {
         Student foundStudent = studentService.findStudentById(id);
         return StudentToStudentDTOConverter.convertProjectToProjectDTO(foundStudent);
     }
