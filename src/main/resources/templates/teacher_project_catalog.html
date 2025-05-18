@@ -195,6 +195,7 @@
 <body>
     <!-- Фильтры Дата (С какого по какое), + Поиск (Название + Ключевые слова) --> <!-- Тут кнопочк с переходом на прфиль -->
     <!-- Название НИР, Автор, Дата публикации, Руководитель(Препод) + Кнопочка для открытия -->
+
     <div class="page-container">
         <nav class="navigation-bar">
             <div class="title">НИР 3000</div>
@@ -223,17 +224,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <input type="date" th:field="*{}">
-                            </td>
-                            <td>
-                                <input type="date" th:field="*{}">
-                            </td>
-                            <td>
-                                <input type="text" th:field="*{}">
-                            </td>
-                        </tr>
+<!--                        <tr>-->
+<!--                            <td>-->
+<!--                                <input type="date" th:field="*{}">-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <input type="date" th:field="*{}">-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <input type="text" th:field="*{}">-->
+<!--                            </td>-->
+<!--                        </tr>-->
                     </tbody>
                 </table>
             </div>
@@ -249,23 +250,23 @@
                         </tr>
                     </thead>
                     <tbody class="table-body">
-                        <tr th:each="projectDTO : ${projectsList}" th:if="${!projectsList.empty}">
-                            <td th:text = "${projectDTO.name}"></td>
-                            <td th:each=" authorName : ${projectDTO.authorsNames}" th:text += "${authorName} + ' '"></td>
-                            <td th:text = "${projectDTO.publicationDate}"></td>
-                            <td th:text = "${projectDTO.teacherName}"></td>
-                            <td>
-                                <div class="table-button-open-nir">
-                                    <!-- <form th:action="@{/teacher/main/nir"} method="get"> -->
-                                    <form th:data-id="@{projectDTO.id}" method="get">
-                                        <button>Открыть</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="empty-row" th:if="${projectsList.empty}">
-                            <td colspan="6">Нет данных для отображения</td>
-                        </tr>
+<!--                        <tr th:each="projectDTO : ${projectsList}" th:if="${!projectsList.empty}">-->
+<!--                            <td th:text = "${projectDTO.name}"></td>-->
+<!--                            <td th:each=" authorName : ${projectDTO.authorsNames}" th:text += "${authorName} + ' '"></td>-->
+<!--                            <td th:text = "${projectDTO.publicationDate}"></td>-->
+<!--                            <td th:text = "${projectDTO.teacherName}"></td>-->
+<!--                            <td>-->
+<!--                                <div class="table-button-open-nir">-->
+<!--                                    &lt;!&ndash; <form th:action="@{/teacher/main/nir"} method="get"> &ndash;&gt;-->
+<!--                                    <form th:data-id="@{projectDTO.id}" method="get">-->
+<!--                                        <button>Открыть</button>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        <tr class="empty-row" th:if="${projectsList.empty}">-->
+<!--                            <td colspan="6">Нет данных для отображения</td>-->
+<!--                        </tr>-->
                     </tbody>
                 </table>
             </div>
