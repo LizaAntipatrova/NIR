@@ -5,6 +5,7 @@ import com.strongkittens.nirstorage.dto.CreateProjectDTO;
 import com.strongkittens.nirstorage.dto.ProjectDTO;
 import com.strongkittens.nirstorage.service.converter.ProjectToProjectDTOConverter;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -24,7 +25,8 @@ public class ProjectViewService {
         return ProjectToProjectDTOConverter.convertProjectToProjectDTO(foundProject);
     }
 
-    public void createProject(CreateProjectDTO createProjectDTO){
+    @SneakyThrows
+    public void createProject(CreateProjectDTO createProjectDTO) {
         Project project = new Project();
 
         project.setName(createProjectDTO.getName());
@@ -39,12 +41,10 @@ public class ProjectViewService {
             project.setGrade(createProjectDTO.getGrade());
         }
 
-        project.setFile(createProjectDTO.getFile());   // dodelat!!!!
-
+        project.setFile(createProjectDTO.getFile().getBytes());
 
         projectService.save(project);
     }
-
 
 
 }

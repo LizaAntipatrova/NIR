@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 //указывает, что методы данного компонента будут использоваться сразу несколькими контроллерами
@@ -122,6 +123,18 @@ public class GlobalExceptionHandler {
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
         errorResponse.setError("UnregisteredUser");
+        errorResponse.setMessage(ex.getMessage());
+        errorResponse.setPath(request.getDescription(false));
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(IOException.class)
+    public ResponseEntity<CustomErrorResponse> handleIOException(Exception ex, WebRequest request) {
+        CustomErrorResponse errorResponse = new CustomErrorResponse();
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        errorResponse.setError("IOException (при конвертации файла в байты)");
         errorResponse.setMessage(ex.getMessage());
         errorResponse.setPath(request.getDescription(false));
 

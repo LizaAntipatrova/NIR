@@ -2,6 +2,7 @@ package com.strongkittens.nirstorage.service.converter;
 
 import com.strongkittens.nirstorage.data.entity.Project;
 import com.strongkittens.nirstorage.dto.ProjectDTO;
+import com.strongkittens.nirstorage.service.fileororo.ByteMultipartFile;
 
 public class ProjectToProjectDTOConverter {
     public static ProjectDTO convertProjectToProjectDTO(Project project) {
@@ -9,7 +10,13 @@ public class ProjectToProjectDTOConverter {
         projectDTO.setId(project.getId());
         projectDTO.setName(project.getName());
         projectDTO.setDescription(project.getDescription());
-        projectDTO.setFile(project.getFile());
+        projectDTO.setFile(
+                new ByteMultipartFile(
+                        project.getFile(),
+                        project.getName(),
+                        project.getName(),
+                        "application/pdf"));
+
         projectDTO.setGrade(project.getGrade());
 
         projectDTO.setTeacherName(getFullName(project.getTeacher().getFirstName(),

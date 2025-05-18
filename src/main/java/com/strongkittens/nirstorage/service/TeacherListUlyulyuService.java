@@ -1,6 +1,5 @@
 package com.strongkittens.nirstorage.service;
 
-import com.strongkittens.nirstorage.data.entity.Teacher;
 import com.strongkittens.nirstorage.data.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
