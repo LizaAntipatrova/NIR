@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: strongkittens
+      changes:
+        - dropColumn:
+            tableName: teacher
+            columnName: group_name
