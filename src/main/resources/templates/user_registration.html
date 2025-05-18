@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       :root {
+            --primary: #306DBD;
+            --secondary: #6C757D;
+            --light-blue: #AECCE6;
+            --purple: #8D2D9C;
+            --orange: #FF9D00;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        form {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .registration-group {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+        }
+
+        .registration-title {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .input-elem {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .input-elem label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--secondary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .input-login,
+        .input-password,
+        .input-password-repeat,
+        .button-group button {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .input-login:focus,
+        .input-password:focus,
+        .input-password-repeat:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(48, 109, 189, 0.1);
+        }
+
+        .button-group {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .button-group button {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .button-group button:hover {
+            background-color: #285fa8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-link {
+            text-align: center;
+            color: var(--secondary);
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: var(--purple);
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 5px;
+            transition: color 0.2s ease;
+        }
+
+        .login-link a:hover {
+            color: #7a2587;
+            text-decoration: underline;
+        }
+
+        /* Стили для ошибок валидации */
+        /* .input-login:invalid,
+        .input-password:invalid,
+        .input-password-repeat:invalid {
+            border-color: #dc3545;
+        }
+
+        .input-login:valid,
+        .input-password:valid,
+        .input-password-repeat:valid {
+            border-color: #28a745;
+        } */
+    </style>
+</head>
+<body>
+    <form th:action="@{/auth/sign-in}" method="post" th:object="${userDTO}">
+        <!-- <script src="main.js"></script> -->
+        <div class="registration-group">
+            <h1 class="registration-title">Регистрация</h1>
+            <div class="input-group">
+                <div class="input-elem">
+                    <label class="login-lable">Логин:</label>
+                    <input type="text" class="input-login" th:field="*{login}" required>
+                </div>
+        
+                <div class="input-elem">
+                    <label class="password-lable">Пароль:</label>
+                    <input type="password" class="input-password" th:field="*{password}" required>
+                </div>
+        
+                <div class="input-elem">
+                    <label class="password-repeat-lable">Повтор пароля:</label>
+                    <input type="password" class="input-password-repeat" required>
+                </div>
+            </div>
+    
+            <div class="button-group">
+                <button>Зарегистрироваться</button>
+            </div>
+    
+            <div class="login-link">
+                <span>Уже зарегестрированы?</span>
+                <a href="">Войти</a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
