@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 //на и с фронта
 //данные для входа и регистрации
-public class userDTO {
+public class UserDTO {
 
     private String login;       //e-mail пользователя
 
