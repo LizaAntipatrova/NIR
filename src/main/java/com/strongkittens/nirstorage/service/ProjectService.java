@@ -6,6 +6,7 @@ import com.strongkittens.nirstorage.data.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -27,10 +28,24 @@ public class ProjectService {
     public List<Project> getProjectsByTeacherId(Long teacherId){
         return projectRepository.findProjectsByTeacher_Id(teacherId);
     }
+    public List<Project> getProjectsByPublicationDateBetweenDates(LocalDate startDate, LocalDate endDate){
+        return projectRepository.findProjectsByPublicationDateBetween(startDate, endDate);
+    }
+    public List<Project> getTeacherProjectsByPublicationDateBetweenDates(Long teacherId, LocalDate startDate, LocalDate endDate){
+        return projectRepository.findProjectsByTeacher_IdAndPublicationDateBetween(teacherId, startDate, endDate);
+    }
 
     public Project getProjectById(Long projectId){
         return projectRepository.findProjectById(projectId);
     }
+
+    public long getCountByGrade(Integer grade){
+        return projectRepository.countByGrade(grade);
+    }
+    public long getCountByTeacherAndGrade(Long teacherId, Integer grade){
+        return projectRepository.countByTeacher_IdAndGrade(teacherId,grade);
+    }
+
 
     public Project save(Project project) {
         return projectRepository.save(project);

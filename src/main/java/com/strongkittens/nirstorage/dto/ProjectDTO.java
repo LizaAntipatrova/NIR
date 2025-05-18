@@ -27,6 +27,6 @@ public class ProjectDTO {
     private String teacherName;
     private List<String> authorsNames;
 
-    private int grade;
+    private Integer grade;
 
 }
