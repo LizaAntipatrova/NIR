@@ -4,7 +4,7 @@ import com.strongkittens.nirstorage.data.entity.Student;
 import com.strongkittens.nirstorage.dto.StudentDTO;
 
 public class StudentToStudentDTOConverter {
-    public static StudentDTO convertProjectToProjectDTO(Student student){
+    public static StudentDTO convertProjectToProjectDTO(Student student) {
         StudentDTO studentDTO = new StudentDTO();
         studentDTO.setId(student.getId());
         studentDTO.setLastName(student.getLastName());

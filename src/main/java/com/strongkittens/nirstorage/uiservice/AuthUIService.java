@@ -1,7 +1,6 @@
 package com.strongkittens.nirstorage.uiservice;
 
 
-import com.strongkittens.nirstorage.auth.httpresponse.HttpResponse;
 import com.strongkittens.nirstorage.auth.services.AuthService;
 import com.strongkittens.nirstorage.auth.services.CustomResponse;
 import com.strongkittens.nirstorage.dto.LoginDTO;

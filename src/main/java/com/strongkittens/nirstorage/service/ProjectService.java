@@ -1,7 +1,6 @@
 package com.strongkittens.nirstorage.service;
 
 import com.strongkittens.nirstorage.data.entity.Project;
-import com.strongkittens.nirstorage.data.entity.Student;
 import com.strongkittens.nirstorage.data.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,36 +13,40 @@ import java.util.List;
 public class ProjectService {
     private final ProjectRepository projectRepository;
 
-    public List<Project> getAllProjects(){
+    public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
-    public List<Project> getProjectsBySubstringInName(String substring){
+
+    public List<Project> getProjectsBySubstringInName(String substring) {
         return projectRepository.findProjectsByNameContainingIgnoreCase(substring);
     }
 
-    public List<Project> getProjectsBySubstringInKeyWords(String substring){
+    public List<Project> getProjectsBySubstringInKeyWords(String substring) {
         return projectRepository.findProjectsByKeyWordsContainingIgnoreCase(substring);
     }
 
-    public List<Project> getProjectsByTeacherId(Long teacherId){
+    public List<Project> getProjectsByTeacherId(Long teacherId) {
         return projectRepository.findProjectsByTeacher_Id(teacherId);
     }
-    public List<Project> getProjectsByPublicationDateBetweenDates(LocalDate startDate, LocalDate endDate){
+
+    public List<Project> getProjectsByPublicationDateBetweenDates(LocalDate startDate, LocalDate endDate) {
         return projectRepository.findProjectsByPublicationDateBetween(startDate, endDate);
     }
-    public List<Project> getTeacherProjectsByPublicationDateBetweenDates(Long teacherId, LocalDate startDate, LocalDate endDate){
+
+    public List<Project> getTeacherProjectsByPublicationDateBetweenDates(Long teacherId, LocalDate startDate, LocalDate endDate) {
         return projectRepository.findProjectsByTeacher_IdAndPublicationDateBetween(teacherId, startDate, endDate);
     }
 
-    public Project getProjectById(Long projectId){
+    public Project getProjectById(Long projectId) {
         return projectRepository.findProjectById(projectId);
     }
 
-    public long getCountByGrade(Integer grade){
-        return projectRepository.countByGrade(grade);
+    public long getCountByGrade(Integer grade, LocalDate startDate, LocalDate endDate) {
+        return projectRepository.countByGradeAndPublicationDateBetween(grade, startDate, endDate);
     }
-    public long getCountByTeacherAndGrade(Long teacherId, Integer grade){
-        return projectRepository.countByTeacher_IdAndGrade(teacherId,grade);
+
+    public long getCountByTeacherAndGrade(Long teacherId, Integer grade, LocalDate startDate, LocalDate endDate) {
+        return projectRepository.countByTeacher_IdAndGradeAndPublicationDateBetween(teacherId, grade, startDate, endDate);
     }
 
 

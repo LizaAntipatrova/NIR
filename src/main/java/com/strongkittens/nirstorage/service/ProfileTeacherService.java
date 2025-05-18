@@ -11,7 +11,7 @@ public class ProfileTeacherService {
 
     private final TeacherService teacherService;
 
-    public TeacherDTO getTeacherDTO(Long id){
+    public TeacherDTO getTeacherDTO(Long id) {
         Teacher foundTeacher = teacherService.findTeacherById(id);
 
         TeacherDTO teacherDTO = new TeacherDTO();
@@ -27,7 +27,7 @@ public class ProfileTeacherService {
         return teacherDTO;
     }
 
-    public void updateTeacherProfileData(TeacherDTO teacherDTO){
+    public void updateTeacherProfileData(TeacherDTO teacherDTO) {
         Teacher teacher = teacherService.findTeacherById(teacherDTO.getId());
 
         if (teacherDTO.getLastName() != null) {

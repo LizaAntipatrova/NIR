@@ -1,7 +1,6 @@
 package com.strongkittens.nirstorage.controller;
 
 
-import com.strongkittens.nirstorage.auth.httpresponse.HttpResponse;
 import com.strongkittens.nirstorage.auth.services.AuthService;
 import com.strongkittens.nirstorage.dto.LoginDTO;
 import com.strongkittens.nirstorage.uiservice.AuthUIService;
@@ -23,13 +22,13 @@ public class AuthController {
 
     //показ формы входа
     @GetMapping("/sign-in")
-    public String shwoSignInForm(Model model){
+    public String shwoSignInForm(Model model) {
         return authUIService.getSignInForm(model);
     }
 
     //обработка данных формы входа
     @PostMapping("/sign-in")
-    public String signIn(@ModelAttribute("userDTO")LoginDTO loginDTO, Model model, HttpServletResponse response){
+    public String signIn(@ModelAttribute("userDTO") LoginDTO loginDTO, Model model, HttpServletResponse response) {
         return authUIService.postSignIn(model, loginDTO, response);
     }
 }

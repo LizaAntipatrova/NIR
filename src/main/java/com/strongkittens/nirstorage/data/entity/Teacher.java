@@ -1,6 +1,5 @@
 package com.strongkittens.nirstorage.data.entity;
 
-import com.strongkittens.nirstorage.data.entity.email.ValidEmail;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -4,7 +4,7 @@ import com.strongkittens.nirstorage.data.entity.Project;
 import com.strongkittens.nirstorage.dto.ProjectDTO;
 
 public class ProjectToProjectDTOConverter {
-    public static ProjectDTO convertProjectToProjectDTO(Project project){
+    public static ProjectDTO convertProjectToProjectDTO(Project project) {
         ProjectDTO projectDTO = new ProjectDTO();
         projectDTO.setId(project.getId());
         projectDTO.setName(project.getName());
@@ -16,14 +16,15 @@ public class ProjectToProjectDTOConverter {
                 project.getTeacher().getLastName(), project.getTeacher().getMiddleName()));
 
         projectDTO.setAuthorsNames(project.getStudents().stream()
-                .map((x)->getFullName(x.getFirstName(), x.getLastName(), x.getMiddleName()))
+                .map((x) -> getFullName(x.getFirstName(), x.getLastName(), x.getMiddleName()))
                 .toList());
 
         projectDTO.setKeyWords(project.getKeyWords());
         projectDTO.setPublicationDate(project.getPublicationDate());
-        return  projectDTO;
+        return projectDTO;
     }
-    private static String getFullName( String firstName, String lastName, String middleName){
+
+    private static String getFullName(String firstName, String lastName, String middleName) {
         return firstName + " " + lastName + " " + middleName;
     }
 }

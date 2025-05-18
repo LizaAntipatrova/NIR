@@ -1,6 +1,5 @@
 package com.strongkittens.nirstorage.service;
 
-import com.strongkittens.nirstorage.data.entity.Project;
 import com.strongkittens.nirstorage.dto.ProjectDTO;
 import com.strongkittens.nirstorage.service.converter.ProjectToProjectDTOConverter;
 import lombok.RequiredArgsConstructor;
@@ -8,21 +7,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ProjectCatalogService {
     private final ProjectService projectService;
-    public List<ProjectDTO> getAllProjects(){
+
+    public List<ProjectDTO> getAllProjects() {
         return projectService.getAllProjects().stream()
                 .map(ProjectToProjectDTOConverter::convertProjectToProjectDTO)
                 .collect(Collectors.toList());
     }
-    public List<ProjectDTO> findProjectsBySubstring(String substring){
+
+    public List<ProjectDTO> findProjectsBySubstring(String substring) {
         substring = substring.toLowerCase();
-        List<ProjectDTO> projectDTOS= new ArrayList<>();
+        List<ProjectDTO> projectDTOS = new ArrayList<>();
         projectDTOS.addAll(projectService.getProjectsBySubstringInName(substring).stream()
                 .map(ProjectToProjectDTOConverter::convertProjectToProjectDTO)
                 .toList());
@@ -31,12 +31,12 @@ public class ProjectCatalogService {
                 .toList());
         return projectDTOS;
     }
-    public List<ProjectDTO> getTeachersProject(Long teacherId){
+
+    public List<ProjectDTO> getTeachersProject(Long teacherId) {
         return projectService.getProjectsByTeacherId(teacherId).stream()
                 .map(ProjectToProjectDTOConverter::convertProjectToProjectDTO)
                 .toList();
     }
-
 
 
 }

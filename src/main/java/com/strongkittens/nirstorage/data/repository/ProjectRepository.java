@@ -8,16 +8,21 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface ProjectRepository extends JpaRepository<Project,Long> {
+public interface ProjectRepository extends JpaRepository<Project, Long> {
     List<Project> findProjectsByNameContainingIgnoreCase(String substring);
+
     List<Project> findProjectsByKeyWordsContainingIgnoreCase(String substring);
+
     List<Project> findProjectsByTeacher_Id(Long teacherId);
+
     List<Project> findProjectsByPublicationDateBetween(LocalDate startDate, LocalDate endDate);
+
     List<Project> findProjectsByTeacher_IdAndPublicationDateBetween(Long teacherId, LocalDate startDate, LocalDate endDate);
-    long countByGrade(Integer grade);
+
+    long countByGradeAndPublicationDateBetween(Integer grade, LocalDate startDate, LocalDate endDate);
 
 
-    long countByTeacher_IdAndGrade(Long teacherId, Integer grade);
+    long countByTeacher_IdAndGradeAndPublicationDateBetween(Long teacherId, Integer grade, LocalDate startDate, LocalDate endDate);
 
     Project findProjectById(long projectId);
 }

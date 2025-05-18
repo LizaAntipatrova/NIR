@@ -13,7 +13,7 @@ public class ProjectViewService {
 
     private final ProjectService projectService;
 
-    public ProjectDTO getProjectDTO(Long id){
+    public ProjectDTO getProjectDTO(Long id) {
         Project foundProject = projectService.getProjectById(id);
 
         return ProjectToProjectDTOConverter.convertProjectToProjectDTO(foundProject);
