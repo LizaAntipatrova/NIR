@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjectDTO {
+public class CreateProjectDTO {
 
     private Long id;
 
@@ -18,15 +18,14 @@ public class ProjectDTO {
 
     private LocalDate publicationDate;
 
-    private byte[] file;
+    private byte[] file; //???
 
     private String description;
 
     private String keyWords;
 
-    private String teacherName;
-    private List<String> authorsNames;
+    private Long teacherId;
+    private List<Long> authorsId;
 
     private Integer grade;
-
 }
