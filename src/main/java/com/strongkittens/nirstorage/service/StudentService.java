@@ -1,7 +1,7 @@
 package com.strongkittens.nirstorage.service;
 
 import com.strongkittens.nirstorage.data.entity.Student;
-import com.strongkittens.nirstorage.data.entity.repository.StudentRepository;
+import com.strongkittens.nirstorage.data.repository.StudentRepository;
 import com.strongkittens.nirstorage.dto.StudentDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
