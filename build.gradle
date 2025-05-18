@@ -38,7 +38,8 @@ dependencies {
     implementation'org.liquibase:liquibase-core'
     // https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api
     implementation'jakarta.validation:jakarta.validation-api'
-
+    // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
+    implementation 'org.thymeleaf:thymeleaf:3.1.2.RELEASE'
 }
 
 
