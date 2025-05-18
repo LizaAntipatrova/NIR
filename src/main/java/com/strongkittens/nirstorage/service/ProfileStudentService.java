@@ -2,6 +2,7 @@ package com.strongkittens.nirstorage.service;
 
 import com.strongkittens.nirstorage.data.entity.Student;
 import com.strongkittens.nirstorage.dto.StudentDTO;
+import com.strongkittens.nirstorage.service.converter.StudentToStudentDTOConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,17 +14,7 @@ public class ProfileStudentService {
 
     public StudentDTO getStudentDTO(Long id){
         Student foundStudent = studentService.findStudentById(id);
-
-        StudentDTO studentDTO = new StudentDTO();
-        studentDTO.setId(id);
-        studentDTO.setLastName(foundStudent.getLastName());
-        studentDTO.setFirstName(foundStudent.getFirstName());
-        studentDTO.setMiddleName(foundStudent.getMiddleName());
-        studentDTO.setPhone(foundStudent.getPhone());
-        studentDTO.setGroup(foundStudent.getGroup());
-        studentDTO.setEmail(foundStudent.getUser().getLogin());
-
-        return studentDTO;
+        return StudentToStudentDTOConverter.convertProjectToProjectDTO(foundStudent);
     }
 
     public void updateStudentProfileData(StudentDTO studentDTO){
