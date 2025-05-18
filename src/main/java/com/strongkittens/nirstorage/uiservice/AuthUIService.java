@@ -26,4 +26,9 @@ public class AuthUIService {
         CustomResponse authResponse = authService.signIn(loginDTO);
         return "redirect:/main/" + authResponse.getUserId();
     }
+
+    public String getSignUpForm(Model model) {
+        model.addAttribute("userDTO", new LoginDTO());
+        return "user_registration";
+    }
 }

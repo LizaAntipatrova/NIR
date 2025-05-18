@@ -122,14 +122,14 @@
     </style>
 </head>
 <body>
-    <form th:action="@{/auth/sign-in}" method="post" th:object="${userDTO}">
+    <form th:action="@{/auth/sign-up}" method="post" th:object="${userDTO}">
         <!-- <script src="main.js"></script> -->
         <div class="registration-group">
             <h1 class="registration-title">Регистрация</h1>
             <div class="input-group">
                 <div class="input-elem">
                     <label class="login-lable">Логин:</label>
-                    <input type="text" class="input-login" th:field="*{*login}" required>
+                    <input type="text" class="input-login" th:field="*{login}" required>
                 </div>
         
                 <div class="input-elem">

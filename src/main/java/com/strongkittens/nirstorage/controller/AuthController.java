@@ -32,4 +32,10 @@ public class AuthController {
     public String signIn(@ModelAttribute("userDTO")LoginDTO loginDTO, Model model, HttpServletResponse response){
         return authUIService.postSignIn(model, loginDTO, response);
     }
+
+    //показ формы регистрации
+    @GetMapping("/sign-up")
+    public String showSignUpForm(Model model){
+        return authUIService.getSignUpForm(model);
+    }
 }

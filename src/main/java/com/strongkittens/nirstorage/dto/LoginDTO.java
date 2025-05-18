@@ -13,11 +13,9 @@ import lombok.NoArgsConstructor;
 //данные для входа и регистрации
 public class LoginDTO {
 
-    @NotNull
-    @ValidEmail
     private String login;       //e-mail пользователя
 
-    @NotNull
+
     private String password;
 
 }
