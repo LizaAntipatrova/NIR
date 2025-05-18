@@ -1,8 +1,8 @@
-package com.strongkittens.nirstorage.controller;
+package com.strongkittens.nirstorage.controller.student;
 
 import com.strongkittens.nirstorage.auth.services.AuthService;
 import com.strongkittens.nirstorage.dto.UserDTO;
-import com.strongkittens.nirstorage.uiservice.AuthUIStudentService;
+import com.strongkittens.nirstorage.uiservice.student.AuthUIStudentService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

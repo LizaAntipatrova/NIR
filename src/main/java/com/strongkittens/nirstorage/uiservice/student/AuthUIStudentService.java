@@ -1,4 +1,4 @@
-package com.strongkittens.nirstorage.uiservice;
+package com.strongkittens.nirstorage.uiservice.student;
 
 
 import com.strongkittens.nirstorage.auth.cookie.SessionCookieProvider;
@@ -26,7 +26,7 @@ public class AuthUIStudentService {
     public String postSignIn(Model model, UserDTO userDTO, HttpServletResponse response) {
         CustomResponse authResponse = authService.signIn(userDTO);
         SessionCookieProvider.setUpStudentSessionCookie(response, authResponse.getCookieSessionId());
-        return "redirect:/student/main/" + authResponse.getUserId();
+        return "redirect:/student/main/";
     }
 
     public String getSignUpForm(Model model) {
