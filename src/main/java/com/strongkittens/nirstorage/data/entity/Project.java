@@ -41,7 +41,7 @@ public class Project {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    private int grade;
+    private Integer grade;
 
     @ManyToMany(mappedBy = "projects")
     private List<Student> students;
