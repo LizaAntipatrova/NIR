@@ -17,15 +17,14 @@ public class MainUITeacherService {
     public String getMainTeacherForm(Model model) {
         List<ProjectDTO> projectDTOs = projectCatalogService.getAllProjects();
         model.addAttribute("projectsList", projectDTOs);
+        model.addAttribute("search", new String());
 
         return "teacher_project_catalog";
     }
 
     public String getProjectsBySearch(String filter, Model model) {
         List<ProjectDTO> projectDTOs = projectCatalogService.findProjectsBySubstring(filter);
-
-        model.addAttribute("projectsList", projectDTOs);
-        return "teacher_project_catalog";
+        return "redirect:/teacher/main";
     }
 
 }
