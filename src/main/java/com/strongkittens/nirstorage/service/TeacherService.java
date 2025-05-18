@@ -5,6 +5,8 @@ import com.strongkittens.nirstorage.data.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TeacherService {
@@ -17,5 +19,6 @@ public class TeacherService {
     public Teacher findTeacherById(Long id){
         return teacherRepository.findById(id).orElse(null);
     }
+
 
 }

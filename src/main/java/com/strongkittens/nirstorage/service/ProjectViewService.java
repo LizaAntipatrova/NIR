@@ -24,7 +24,6 @@ public class ProjectViewService {
         return ProjectToProjectDTOConverter.convertProjectToProjectDTO(foundProject);
     }
 
-    // дата публикации проставляю я, руководитель - id, список участников
     public void createProject(CreateProjectDTO createProjectDTO){
         Project project = new Project();
 
@@ -40,7 +39,7 @@ public class ProjectViewService {
             project.setGrade(createProjectDTO.getGrade());
         }
 
-        project.setFile(createProjectDTO.getFile()); // dodelat!!!!
+        project.setFile(createProjectDTO.getFile());   // dodelat!!!!
 
 
         projectService.save(project);
