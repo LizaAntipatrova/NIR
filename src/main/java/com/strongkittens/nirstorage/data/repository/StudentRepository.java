@@ -1,4 +1,4 @@
-package com.strongkittens.nirstorage.data.entity.repository;
+package com.strongkittens.nirstorage.data.repository;
 
 import com.strongkittens.nirstorage.data.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
