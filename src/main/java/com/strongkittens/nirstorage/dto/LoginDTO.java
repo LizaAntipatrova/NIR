@@ -1,5 +1,6 @@
 package com.strongkittens.nirstorage.dto;
 
+import com.strongkittens.nirstorage.data.entity.email.ValidEmail;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,8 @@ import lombok.NoArgsConstructor;
 public class LoginDTO {
 
     @NotNull
-    private String login;       //e-mail посетителя или код сотрудника
+    @ValidEmail
+    private String login;       //e-mail пользователя
 
     @NotNull
     private String password;
