@@ -11,10 +11,19 @@ public class ProjectToProjectDTOConverter {
         projectDTO.setDescription(project.getDescription());
         projectDTO.setFile(project.getFile());
         projectDTO.setGrade(project.getGrade());
-        projectDTO.setTeacherName(project.getTeacher().getFirstName() + " " +
-                project.getTeacher().getLastName() + " " + project.getTeacher().getMiddleName());
+
+        projectDTO.setTeacherName(getFullName(project.getTeacher().getFirstName(),
+                project.getTeacher().getLastName(), project.getTeacher().getMiddleName()));
+
+        projectDTO.setAuthorsNames(project.getStudents().stream()
+                .map((x)->getFullName(x.getFirstName(), x.getLastName(), x.getMiddleName()))
+                .toList());
+
         projectDTO.setKeyWords(project.getKeyWords());
         projectDTO.setPublicationDate(project.getPublicationDate());
         return  projectDTO;
+    }
+    private static String getFullName( String firstName, String lastName, String middleName){
+        return firstName + " " + lastName + " " + middleName;
     }
 }

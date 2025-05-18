@@ -1,10 +1,5 @@
 package com.strongkittens.nirstorage.dto;
 
-import com.strongkittens.nirstorage.data.entity.Student;
-import com.strongkittens.nirstorage.data.entity.Teacher;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +25,7 @@ public class ProjectDTO {
     private String keyWords;
 
     private String teacherName;
+    private List<String> authorsNames;
 
     private int grade;
 
