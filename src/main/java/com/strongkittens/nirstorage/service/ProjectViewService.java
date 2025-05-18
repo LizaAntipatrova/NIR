@@ -19,4 +19,7 @@ public class ProjectViewService {
         return ProjectToProjectDTOConverter.convertProjectToProjectDTO(foundProject);
     }
 
+    // дата публикации проставляю я , руководитель - id, список участников
+
+
 }

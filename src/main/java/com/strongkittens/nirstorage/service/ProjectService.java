@@ -1,6 +1,7 @@
 package com.strongkittens.nirstorage.service;
 
 import com.strongkittens.nirstorage.data.entity.Project;
+import com.strongkittens.nirstorage.data.entity.Student;
 import com.strongkittens.nirstorage.data.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,4 +32,7 @@ public class ProjectService {
         return projectRepository.findProjectById(projectId);
     }
 
+    public Project save(Project project) {
+        return projectRepository.save(project);
+    }
 }
