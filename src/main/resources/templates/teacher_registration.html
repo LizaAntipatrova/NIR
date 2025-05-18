@@ -122,7 +122,7 @@
   </style>
 </head>
 <body>
-<form th:action="@{/auth/sign-up}" method="post" th:object="${userDTO}">
+<form th:action="@{/auth/teacher/sign-up}" method="post" th:object="${userDTO}">
   <!-- <script src="main.js"></script> -->
   <div class="registration-group">
     <h1 class="registration-title">Регистрация</h1>
@@ -149,7 +149,7 @@
 
     <div class="login-link">
       <span>Уже зарегестрированы?</span>
-      <a href="">Войти</a>
+      <a th:href="@{/auth/teacher/sign-in}">Войти</a>
     </div>
   </div>
 </form>

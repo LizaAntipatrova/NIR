@@ -9,7 +9,7 @@ import com.strongkittens.nirstorage.auth.services.parser.CookieHeaderParser;
 import com.strongkittens.nirstorage.auth.services.parser.Credential;
 import com.strongkittens.nirstorage.data.entity.Role;
 import com.strongkittens.nirstorage.data.entity.User;
-import com.strongkittens.nirstorage.dto.userDTO;
+import com.strongkittens.nirstorage.dto.UserDTO;
 import com.strongkittens.nirstorage.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,13 +31,13 @@ public class AuthService {
         return AuthorizationHeaderToCredentialParser.parse(authenticationHeader);
     }
 
-    public boolean signUp(userDTO loginDTO, Role role) {
+    public boolean signUp(UserDTO loginDTO, Role role) {
         userService.createUser(loginDTO.getLogin(), passwordEncoder.encode(loginDTO.getPassword()), role);
         return true;
     }
 
 
-    public CustomResponse signIn(userDTO loginDTO) {
+    public CustomResponse signIn(UserDTO loginDTO) {
         User user = userService.findUserByLogin(loginDTO.getLogin());
         if (!passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
             throw new UnregisteredUserException();
