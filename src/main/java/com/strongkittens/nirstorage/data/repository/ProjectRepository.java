@@ -11,4 +11,6 @@ public interface ProjectRepository extends JpaRepository<Project,Long> {
     List<Project> findProjectsByNameContainingIgnoreCase(String substring);
     List<Project> findProjectsByKeyWordsContainingIgnoreCase(String substring);
     List<Project> findProjectsByTeacher_Id(Long teacherId);
+
+    Project findProjectById(long projectId);
 }

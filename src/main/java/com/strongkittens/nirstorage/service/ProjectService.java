@@ -27,6 +27,8 @@ public class ProjectService {
         return projectRepository.findProjectsByTeacher_Id(teacherId);
     }
 
-
+    public Project getProjectById(Long projectId){
+        return projectRepository.findProjectById(projectId);
+    }
 
 }

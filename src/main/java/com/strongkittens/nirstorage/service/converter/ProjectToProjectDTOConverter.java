@@ -11,7 +11,8 @@ public class ProjectToProjectDTOConverter {
         projectDTO.setDescription(project.getDescription());
         projectDTO.setFile(project.getFile());
         projectDTO.setGrade(project.getGrade());
-        projectDTO.setTeacherName(project.getTeacher().getFirstName());
+        projectDTO.setTeacherName(project.getTeacher().getFirstName() + " " +
+                project.getTeacher().getLastName() + " " + project.getTeacher().getMiddleName());
         projectDTO.setKeyWords(project.getKeyWords());
         projectDTO.setPublicationDate(project.getPublicationDate());
         return  projectDTO;
