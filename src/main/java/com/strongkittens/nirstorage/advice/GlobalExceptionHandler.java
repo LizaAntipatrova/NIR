@@ -32,6 +32,19 @@ public class GlobalExceptionHandler {
 //        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 //    }
 
+    //
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<CustomErrorResponse> handleException(Exception ex, WebRequest request) {
+        CustomErrorResponse errorResponse = new CustomErrorResponse();
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        errorResponse.setError("holy shit");
+        errorResponse.setMessage(ex.getMessage());
+        errorResponse.setPath(request.getDescription(false));
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+
     //метод для обработки исключений
     @ExceptionHandler(ExistingUserWithThatUsernameException.class)
     public ResponseEntity<CustomErrorResponse> handleExistingUserException(Exception ex, WebRequest request) {
