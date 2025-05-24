@@ -227,7 +227,7 @@
                 <div class="profesion-container">
                     <div class="info-row">
                         <div>Должность</div>
-                        <div th:text="${teacherDTO.job}"></div>
+                        <div th:text="${jobTitles.get(teacherDTO.job?.name())}"></div>
                     </div>
                     <div class="info-row">
                         <div>Телефон</div>
