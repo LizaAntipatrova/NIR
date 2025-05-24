@@ -19,7 +19,7 @@ public class MainUIStudentService {
         model.addAttribute("projectsList", projectDTOs);
         model.addAttribute("search", new String());
 
-        return "student_project_catalog";
+        return "student_projects_catalog";
     }
 
     public String getProjectsBySearch(String filter, Model model) {

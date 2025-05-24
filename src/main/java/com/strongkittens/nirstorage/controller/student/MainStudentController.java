@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/student")
 public class MainStudentController {
 
+    private final ProjectCatalogService projectCatalogService;
     private final MainUIStudentService mainUIStudentService;
 
     @GetMapping("/main")
