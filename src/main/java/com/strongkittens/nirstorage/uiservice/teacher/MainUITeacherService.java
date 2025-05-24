@@ -1,9 +1,12 @@
 package com.strongkittens.nirstorage.uiservice.teacher;
 
+import com.strongkittens.nirstorage.dto.ProjectDTO;
 import com.strongkittens.nirstorage.service.ProjectCatalogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -12,7 +15,16 @@ public class MainUITeacherService {
 
 
     public String getMainTeacherForm(Model model) {
-        //model.addAttribute()
-        return "";
+        List<ProjectDTO> projectDTOs = projectCatalogService.getAllProjects();
+        model.addAttribute("projectsList", projectDTOs);
+        model.addAttribute("search", new String());
+
+        return "teacher_project_catalog";
     }
+
+    public String getProjectsBySearch(String filter, Model model) {
+        List<ProjectDTO> projectDTOs = projectCatalogService.findProjectsBySubstring(filter);
+        return "redirect:/teacher/main";
+    }
+
 }

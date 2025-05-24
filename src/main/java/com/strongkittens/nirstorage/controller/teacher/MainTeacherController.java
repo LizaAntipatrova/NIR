@@ -6,8 +6,7 @@ import com.strongkittens.nirstorage.uiservice.teacher.MainUITeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,6 +21,8 @@ public class MainTeacherController {
         return mainUITeacherService.getMainTeacherForm(model);
     }
 
-
-
+    @PostMapping("/main/apply-filter")
+    public String applyFilter(@ModelAttribute("search") String filter, Model model) {
+        return mainUITeacherService.getProjectsBySearch(filter, model);
+    }
 }
