@@ -28,18 +28,18 @@ public class StatisticsService {
 
     }
 
-    public List<LocalDate> getTeachersProjectsDatesOverPeriodTime(Long teacherId, LocalDate startDate, LocalDate endDate) {
-        return projectService.getTeacherProjectsByPublicationDateBetweenDates(teacherId, startDate, endDate).stream()
+    public List<LocalDate> getTeachersProjectsDatesOverPeriodTime(Long userId, LocalDate startDate, LocalDate endDate) {
+        return projectService.getTeacherProjectsByPublicationDateBetweenDates(userId, startDate, endDate).stream()
                 .map(Project::getPublicationDate)
                 .toList();
     }
 
-    public Map<Integer, Long> getTeacherProjectsGradeOverPeriodTime(Long teacherId, LocalDate startDate, LocalDate endDate) {
+    public Map<Integer, Long> getTeacherProjectsGradeOverPeriodTime(Long userId, LocalDate startDate, LocalDate endDate) {
         return Arrays.stream(Grade.values())
                 .map(Grade::getGradeValue)
                 .collect(Collectors.toMap(
                         (x) -> x,
-                        (x) -> projectService.getCountByTeacherAndGrade(teacherId, x, startDate, endDate)));
+                        (x) -> projectService.getCountByTeacherAndGrade(userId, x, startDate, endDate)));
     }
 
 }

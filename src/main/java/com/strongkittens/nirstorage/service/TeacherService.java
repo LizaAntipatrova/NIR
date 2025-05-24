@@ -1,6 +1,5 @@
 package com.strongkittens.nirstorage.service;
 
-import com.strongkittens.nirstorage.data.entity.Student;
 import com.strongkittens.nirstorage.data.entity.Teacher;
 import com.strongkittens.nirstorage.data.entity.User;
 import com.strongkittens.nirstorage.data.repository.TeacherRepository;
@@ -18,8 +17,8 @@ public class TeacherService {
         return teacherRepository.save(teacher);
     }
 
-    public Teacher findTeacherById(Long id) {
-        return teacherRepository.findById(id).orElse(null);
+    public Teacher findTeacherByUserId(Long id) {
+        return teacherRepository.findTeacherByUser_Id(id);
     }
 
     public Teacher createEmptyTeacher(User user){

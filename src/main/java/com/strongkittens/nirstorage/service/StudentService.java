@@ -18,7 +18,7 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public Student findStudentById(Long id) {
+    public Student findStudentByUserId(Long id) {
         return studentRepository.findById(id).orElse(null);
     }
     public Student createEmptyStudent(User user){

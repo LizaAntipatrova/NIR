@@ -17,9 +17,9 @@ public class ProfileUIStudentService {
     private final AuthService authService;
 
     public String getStudentProfileForm(Model model, String cookie) {
-        Long studentId = authService.getUserIdFromCookie(cookie);
-        StudentDTO studentDTO = profileStudentService.getStudentByID(studentId);
-        List<ProjectDTO> projectDTOS = profileStudentService.getStudentsProjects(studentId);
+        Long userId = authService.getUserIdFromCookie(cookie);
+        StudentDTO studentDTO = profileStudentService.getStudentByUserId(userId);
+        List<ProjectDTO> projectDTOS = profileStudentService.getStudentsProjects(userId);
         model.addAttribute("projectsList", projectDTOS);
         model.addAttribute("studentDTO", studentDTO);
 
