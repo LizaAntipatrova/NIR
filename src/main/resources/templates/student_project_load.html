@@ -253,7 +253,7 @@ body {
         <nav class="navigation-bar">
             <div class="title">НИР 3000</div>
             <div class="nav-elem">
-                <form th:action="@{/student/load}" method="post">
+                <form th:action="@{/student/load}" method="post" th:object="${createProjectDTO}">
                     <button type="submit">Загрузить НИР</button>
                 </form>
                 <form th:action="@{/student/profile}" method="post">
@@ -263,28 +263,39 @@ body {
             </div>
         </nav>
         <div class="load-container">
+
             <div class="data-row">
                 <div>Название проекта:</div>
-                <input class="data-input" type="text" th:field="*{}">
+                <input class="data-input" type="text" th:field="*{name}">
             </div>
+
+            <!-- TODO: Тут муть с датой -->
+            <input type="hidden" th:field="*{publicationDate}" th:value="${#dates.format(#dates.createNow(),'YYYY/MM/dd')}">
+
             <div class="data-row">
                 <div>Описание:</div>
-                <textarea class="data-input-description" class="data-input" type="text" th:field="*{}"></textarea>
+                <textarea class="data-input-description" class="data-input" type="text" th:field="*{description}"></textarea>
             </div>
+
             <div class="data-row">
                 <div>Ключевые слова:</div>
-                <textarea class="data-input-key-words" class="data-input" type="text" th:field="*{}"></textarea>
+                <textarea class="data-input-key-words" class="data-input" type="text" th:field="*{keyWords}"></textarea>
             </div>
+            <!-- Дальше Бога нет... или есть...-->
             <div class="data-row">
                 <div>Выберите научного руководителя:</div>
-                <select class="select-teacher" th:field="*{}" required>
+                <select class="select-teacher" th:field="*{}" required th:field="*{teacherId}">
                     <option value="">--Выберите научного руководителя--</option>
-                    <option th:each="teacher : ${listTeachers}" th:value="${teacher}" th:text="${teacher}"></option>
+                    <option th:each="teacher : ${listTeachers}" th:value="${teacher.id}" th:text="${teacher.lastName + teacher.firstName + teacher.middleName}"></option>
                 </select>
             </div>
             <div class="data-row">
                 <div class="big-letters-lable">Автор(ы)</div>
-                <input class="data-input" type="text" th:field="*{authorsNames}" id="authorName">
+                <select class="select-sudent" th:field="*{}" required id="authorName" th:field="*{authorsId}">
+                    <option value="">--Выберите студента--</option>
+                    <option th:each="student : ${listStudents}" th:value="${student.id}" th:text="${student.lastName + student.firstName + student.middleName}"></option>
+                </select>
+                <!-- <input class="data-input" type="text" th:field="*{authorsNames}" id="authorName"> -->
                 <button type="button" id="addAuthor">Добавить</button>
             </div>
             <div class="data-row"  th:if="${not #list.isEmpty(projectDTO.authorsNames)}" id="authorsSelection">
@@ -312,7 +323,8 @@ body {
             </div>
             <div class="data-row">
                 <div>Прикрепите НИР</div>
-                <input type="file" class="file-input" accept="image/*">
+                <!-- TODO: Тут муть с файлами  -->
+                <input type="file" class="file-input" accept="image/*" enctype="multipart/form-data" th:field="*{file}">
             </div>
         </div>
     </div>
@@ -321,7 +333,9 @@ body {
         let authorIndex =  0;
 
         document.getElementById('addAuthor').addEventListener('click', function() {
-            const authorName = document.getElementById('authorName').value;
+            const e = document.getElementById('authorName');
+            const value = e.value;
+            const authorName = e.options[e.selectedIndex].text;
 
             if (!authorName) {
                 alert('Заполните поле ФИО!');
@@ -334,7 +348,12 @@ body {
             const tableBody = document.getElementById('tableBody');
             const newRow = document.createElement('tr');
 
-            newRow.innerHTML = `<td>${authorIndex + 1}</td> <td>${authorName} <input type="hidden" name="authorsNames[${authorIndex}]" value="${authorName}"> </td>`; 
+            newRow.innerHTML = `
+                <td>${authorIndex + 1}</td> 
+                <td>
+                    ${authorName} 
+                    <input type="hidden" name="authorsNames[${authorIndex}]" value="${authorName}"> 
+                </td>`; 
             
             tableBody.appendChild(newRow);
             authorIndex++;
