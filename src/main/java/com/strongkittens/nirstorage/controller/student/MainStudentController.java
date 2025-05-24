@@ -28,4 +28,6 @@ public class MainStudentController {
     public String applyFilter(@ModelAttribute("search") String filter, Model model) {
         return mainUIStudentService.getProjectsBySearch(filter, model);
     }
+
+
 }
