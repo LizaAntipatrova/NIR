@@ -1,6 +1,7 @@
 package com.strongkittens.nirstorage.uiservice.teacher;
 
 import com.strongkittens.nirstorage.auth.services.AuthService;
+import com.strongkittens.nirstorage.data.entity.Job;
 import com.strongkittens.nirstorage.data.entity.Teacher;
 import com.strongkittens.nirstorage.dto.ProjectDTO;
 import com.strongkittens.nirstorage.dto.TeacherDTO;
@@ -26,6 +27,7 @@ public class ProfileUITeacherService {
         Long userId = authService.getUserIdFromCookie(cookie);
         TeacherDTO teacherDTO = profileTeacherService.getTeacherByUserId(userId);
         model.addAttribute("teacherDTO", teacherDTO);
+        model.addAttribute("jobTitles", Job.getJobTitles());
         List<ProjectDTO> projectDTOList = projectCatalogService.getTeachersProjectByTeacherUserId(userId);
         model.addAttribute("projectsList", projectDTOList);
         return "teacher_profile";
@@ -33,6 +35,7 @@ public class ProfileUITeacherService {
 
     public String getProfileEditPage(Model model, String cookieHeader) {
         Long userId = authService.getUserIdFromCookie(cookieHeader);
+        model.addAttribute("jobTitles", Job.getJobTitles());
         TeacherDTO teacherDTO = profileTeacherService.getTeacherByUserId(userId);
         model.addAttribute("teacherDTO", teacherDTO);
         return "teacher_profile_edit";
