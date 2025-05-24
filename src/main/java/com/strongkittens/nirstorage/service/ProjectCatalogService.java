@@ -32,8 +32,8 @@ public class ProjectCatalogService {
         return projectDTOS;
     }
 
-    public List<ProjectDTO> getTeachersProjectByTeacherId(Long teacherId) {
-        return projectService.getProjectsByTeacherId(teacherId).stream()
+    public List<ProjectDTO> getTeachersProjectByTeacherUserId(Long teacherId) {
+        return projectService.getProjectsByTeacherUserId(teacherId).stream()
                 .map(ProjectToProjectDTOConverter::convertProjectToProjectDTO)
                 .toList();
     }

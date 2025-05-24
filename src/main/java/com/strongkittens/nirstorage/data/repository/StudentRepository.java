@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
-    Student findStudentById(Long id);
+    Student findStudentByUser_Id(Long id);
 }

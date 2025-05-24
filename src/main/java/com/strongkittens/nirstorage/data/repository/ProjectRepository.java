@@ -13,16 +13,16 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     List<Project> findProjectsByKeyWordsContainingIgnoreCase(String substring);
 
-    List<Project> findProjectsByTeacher_Id(Long teacherId);
+    List<Project> findProjectsByTeacher_User_Id(Long teacherId);
 
     List<Project> findProjectsByPublicationDateBetween(LocalDate startDate, LocalDate endDate);
 
-    List<Project> findProjectsByTeacher_IdAndPublicationDateBetween(Long teacherId, LocalDate startDate, LocalDate endDate);
+    List<Project> findProjectsByTeacher_User_IdAndPublicationDateBetween(Long teacherId, LocalDate startDate, LocalDate endDate);
 
     long countByGradeAndPublicationDateBetween(Integer grade, LocalDate startDate, LocalDate endDate);
 
 
-    long countByTeacher_IdAndGradeAndPublicationDateBetween(Long teacherId, Integer grade, LocalDate startDate, LocalDate endDate);
+    long countByTeacher_User_IdAndGradeAndPublicationDateBetween(Long teacherId, Integer grade, LocalDate startDate, LocalDate endDate);
 
     Project findProjectById(long projectId);
 }

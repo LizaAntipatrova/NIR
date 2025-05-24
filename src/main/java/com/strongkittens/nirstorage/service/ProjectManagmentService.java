@@ -33,9 +33,9 @@ public class ProjectManagmentService {
         project.setPublicationDate(LocalDate.now());
         project.setDescription(createProjectDTO.getDescription());
         project.setKeyWords(createProjectDTO.getKeyWords());
-        project.setTeacher(teacherService.findTeacherById(createProjectDTO.getTeacherId()));
+        project.setTeacher(teacherService.findTeacherByUserId(createProjectDTO.getTeacherId()));
 
-        project.setStudents(createProjectDTO.getAuthorsId().stream().map(studentService::findStudentById).toList());
+        project.setStudents(createProjectDTO.getAuthorsId().stream().map(studentService::findStudentByUserId).toList());
 
         if (createProjectDTO.getGrade() != null) {
             project.setGrade(createProjectDTO.getGrade());

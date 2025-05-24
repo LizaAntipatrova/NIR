@@ -17,13 +17,13 @@ public class ProfileStudentService {
     private final StudentService studentService;
     private final ProjectService projectService;
 
-    public StudentDTO getStudentByID(Long id) {
-        Student foundStudent = studentService.findStudentById(id);
+    public StudentDTO getStudentByUserId(Long id) {
+        Student foundStudent = studentService.findStudentByUserId(id);
         return StudentToStudentDTOConverter.convertProjectToProjectDTO(foundStudent);
     }
 
     public void updateStudentProfileData(StudentDTO studentDTO) {
-        Student student = studentService.findStudentById(studentDTO.getId());
+        Student student = studentService.findStudentByUserId(studentDTO.getId());
 
         if (studentDTO.getLastName() != null) {
             student.setLastName(studentDTO.getLastName());
@@ -38,14 +38,14 @@ public class ProfileStudentService {
             student.setPhone(studentDTO.getPhone());
         }
         if (studentDTO.getGroup() != null) {
-            student.setGroup(studentDTO.getGroup());
+            student.setGroupName(studentDTO.getGroup());
         }
 
         studentService.save(student);
     }
 
     public List<ProjectDTO> getStudentsProjects(Long id) {
-        Student foundStudent = studentService.findStudentById(id);
+        Student foundStudent = studentService.findStudentByUserId(id);
         return foundStudent.getProjects().stream()
                 .map(ProjectToProjectDTOConverter::convertProjectToProjectDTO)
                 .toList();

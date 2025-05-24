@@ -27,7 +27,7 @@ public class Student {
 
     private String phone;
 
-    private String group;
+    private String groupName;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

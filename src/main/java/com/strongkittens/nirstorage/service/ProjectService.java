@@ -25,16 +25,16 @@ public class ProjectService {
         return projectRepository.findProjectsByKeyWordsContainingIgnoreCase(substring);
     }
 
-    public List<Project> getProjectsByTeacherId(Long teacherId) {
-        return projectRepository.findProjectsByTeacher_Id(teacherId);
+    public List<Project> getProjectsByTeacherUserId(Long teacherId) {
+        return projectRepository.findProjectsByTeacher_User_Id(teacherId);
     }
 
     public List<Project> getProjectsByPublicationDateBetweenDates(LocalDate startDate, LocalDate endDate) {
         return projectRepository.findProjectsByPublicationDateBetween(startDate, endDate);
     }
 
-    public List<Project> getTeacherProjectsByPublicationDateBetweenDates(Long teacherId, LocalDate startDate, LocalDate endDate) {
-        return projectRepository.findProjectsByTeacher_IdAndPublicationDateBetween(teacherId, startDate, endDate);
+    public List<Project> getTeacherProjectsByPublicationDateBetweenDates(Long userId, LocalDate startDate, LocalDate endDate) {
+        return projectRepository.findProjectsByTeacher_User_IdAndPublicationDateBetween(userId, startDate, endDate);
     }
 
     public Project getProjectById(Long projectId) {
@@ -45,8 +45,8 @@ public class ProjectService {
         return projectRepository.countByGradeAndPublicationDateBetween(grade, startDate, endDate);
     }
 
-    public long getCountByTeacherAndGrade(Long teacherId, Integer grade, LocalDate startDate, LocalDate endDate) {
-        return projectRepository.countByTeacher_IdAndGradeAndPublicationDateBetween(teacherId, grade, startDate, endDate);
+    public long getCountByTeacherAndGrade(Long userId, Integer grade, LocalDate startDate, LocalDate endDate) {
+        return projectRepository.countByTeacher_User_IdAndGradeAndPublicationDateBetween(userId, grade, startDate, endDate);
     }
 
 

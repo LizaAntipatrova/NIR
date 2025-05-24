@@ -223,11 +223,11 @@
             <div class="title">НИР 3000</div>
             
             <div class="nav-elem">
-                <form th:action="@{/student/load}" method="post">
+                <form th:action="@{/student/load}" method="get">
                     <button type="submit">Загрузить НИР</button>
                 </form>
-                <form th:action="@{/student/profile}" method="post">
-                    <button type="button">Профиль</button>
+                <form th:action="@{/student/profile}" method="get">
+                    <button type="submit">Профиль</button>
                     <!-- <input type="hidden" th:field="*{id}" th:value=""> Тут обсудить--> 
                 </form>
             </div>
@@ -248,7 +248,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <form th:action="@{teacher/main/applyFilter}" method="post" th:object="${search}">
+                            <form th:action="@{student/main/applyFilter}" method="post" th:object="${search}">
                                 <td>
                                     <input type="date" id="startDateFilter">
                                 </td>
@@ -256,11 +256,11 @@
                                     <input type="date" id="endDateFilter">
                                 </td>
                                 <td>
-                                    <input type="text" th:field="*{search}">
+                                    <input type="text" th:name="search">
                                 </td>
                                 <td>
                                     <div class="table-button-search">
-                                        <button type="button">Найти</button>
+                                        <button type="submit">Найти</button>
                                     </div>
                                 </td>
                             </form>
