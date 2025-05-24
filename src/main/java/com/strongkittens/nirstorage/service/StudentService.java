@@ -19,7 +19,7 @@ public class StudentService {
     }
 
     public Student findStudentByUserId(Long id) {
-        return studentRepository.findById(id).orElse(null);
+        return studentRepository.findStudentByUser_Id(id);
     }
     public Student createEmptyStudent(User user){
         Student student = new Student();

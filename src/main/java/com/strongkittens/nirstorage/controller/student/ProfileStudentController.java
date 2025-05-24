@@ -18,6 +18,10 @@ public class ProfileStudentController {
     public String showProfileStudentForm(Model model, @RequestHeader("Cookie") String cookieHeader){
         return profileUIStudentService.getStudentProfileForm(model, cookieHeader);
     }
+    @GetMapping("/edit")
+    public String showProfileEditStudentForm(Model model, @RequestHeader("Cookie") String cookieHeader){
+        return profileUIStudentService.getStudentEditProfileForm(model, cookieHeader);
+    }
 
 
 

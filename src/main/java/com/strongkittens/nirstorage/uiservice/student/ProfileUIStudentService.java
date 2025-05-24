@@ -25,5 +25,14 @@ public class ProfileUIStudentService {
 
         return "student_profile";
     }
+    public String getStudentEditProfileForm(Model model, String cookie) {
+        Long userId = authService.getUserIdFromCookie(cookie);
+//        StudentDTO studentDTO = profileStudentService.get(userId);
+//        List<ProjectDTO> projectDTOS = profileStudentService.getStudentsProjects(userId);
+//        model.addAttribute("projectsList", projectDTOS);
+//        model.addAttribute("studentDTO", studentDTO);
+
+        return "student_profile";
+    }
 
 }
