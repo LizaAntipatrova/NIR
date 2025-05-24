@@ -23,7 +23,7 @@ public class ProfileTeacherController {
     public String showEditForm(Model model, @RequestHeader("Cookie") String cookieHeader){
         return profileUITeacherService.getProfileEditPage(model, cookieHeader);
     }
-
+//TODO:сделай выпадающий список для профессий!!!!!
     @PostMapping("/edit/save")
     public String updateTeacherData(Model model, @RequestHeader("Cookie") String cookieHeader, @ModelAttribute("teacherDTO") TeacherDTO teacherDTO){
         return profileUITeacherService.updateTeacherData(cookieHeader, teacherDTO);

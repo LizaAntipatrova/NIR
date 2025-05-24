@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProfileStudentController {
     private final ProfileUIStudentService profileUIStudentService;
 
-    @GetMapping("")
+    @GetMapping
     public String showProfileStudentForm(Model model, @RequestHeader("Cookie") String cookieHeader){
         return profileUIStudentService.getStudentProfileForm(model, cookieHeader);
     }
@@ -23,7 +23,7 @@ public class ProfileStudentController {
     }
 
     @PostMapping("/edit")
-    public String editStudentProfile(@ModelAttribute("studentDTO") StudentDTO studentDTO){
-        return profileUIStudentService.postStudentEditProfileForm(studentDTO);
+    public String editStudentProfile(@ModelAttribute("studentDTO") StudentDTO studentDTO, @RequestHeader("Cookie") String cookie){
+        return profileUIStudentService.postStudentEditProfileForm(studentDTO, cookie);
     }
 }

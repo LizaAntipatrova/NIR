@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
-public class ProjectManagmentService {
+public class ProjectManagementService {
 
     private final ProjectService projectService;
     private final TeacherService teacherService;

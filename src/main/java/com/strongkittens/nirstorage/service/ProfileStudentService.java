@@ -15,7 +15,6 @@ import java.util.List;
 public class ProfileStudentService {
 
     private final StudentService studentService;
-    private final ProjectService projectService;
 
     public StudentDTO getStudentByUserId(Long id) {
         Student foundStudent = studentService.findStudentByUserId(id);

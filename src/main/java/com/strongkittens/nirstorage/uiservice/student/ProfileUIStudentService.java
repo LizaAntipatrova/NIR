@@ -17,25 +17,29 @@ public class ProfileUIStudentService {
     private final AuthService authService;
 
     public String getStudentProfileForm(Model model, String cookie) {
-        setUpStudentProfileDataInModel(model, cookie);
-
-        return "student_profile";
-    }
-    public String getStudentEditProfileForm(Model model, String cookie) {
-        setUpStudentProfileDataInModel(model, cookie);
-
-        return "student_profile_edit";
-    }
-
-    private void setUpStudentProfileDataInModel(Model model, String cookie) {
         Long userId = authService.getUserIdFromCookie(cookie);
         StudentDTO studentDTO = profileStudentService.getStudentByUserId(userId);
         List<ProjectDTO> projectDTOS = profileStudentService.getStudentsProjects(userId);
         model.addAttribute("projectsList", projectDTOS);
         model.addAttribute("studentDTO", studentDTO);
+
+        return "student_profile";
     }
 
-    public String postStudentEditProfileForm(StudentDTO studentDTO) {
+    public String getStudentEditProfileForm(Model model, String cookie) {
+        Long userId = authService.getUserIdFromCookie(cookie);
+        StudentDTO studentDTO = profileStudentService.getStudentByUserId(userId);
+        List<ProjectDTO> projectDTOS = profileStudentService.getStudentsProjects(userId);
+        model.addAttribute("projectsList", projectDTOS);
+//        model.addAttribute("currentStudentDTO", studentDTO);
+        model.addAttribute("studentDTO", studentDTO);
+
+        return "student_profile_edit";
+    }
+
+
+    public String postStudentEditProfileForm(StudentDTO studentDTO, String cookie) {
+        studentDTO.setId(authService.getUserIdFromCookie(cookie));
         profileStudentService.updateStudentProfileData(studentDTO);
         return "redirect:/student/profile";
     }
