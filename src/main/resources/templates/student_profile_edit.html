@@ -145,7 +145,7 @@
             <div class="title">НИР 3000</div> 
 
             <div class="nav-elem">
-                <form th:action="@{}" method="post">
+                <form th:action="@{}" method="post" th:object="${studentDTO}">
                     <button type="submit">Сохранить изменения</button>
                 </form>
             </div>
