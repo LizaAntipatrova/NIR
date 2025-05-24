@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Каталог НИР - Студент</title>
+    <style>
+        :root {
+            --primary: #306DBD;
+            --secondary: #6C757D;
+            --light-blue: #AECCE6;
+            --purple: #8D2D9C;
+            --orange: #FF9D00;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-blue);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navigation-bar {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navigation-bar .title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .nav-elem {
+            display: flex;
+            gap: 16px;
+            margin-left: 10px;
+        }
+
+        .navigation-bar > div:last-child {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-elem button {
+            background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-elem button:hover {
+            background-color: #e08d00;
+            transform: translateY(-2px);
+        }
+
+        .projects-group {
+            padding: 30px;
+            flex: 1;
+        }
+
+        .filter-group {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-title {
+            color: var(--primary);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .filter-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .filter-table th {
+            text-align: left;
+            padding: 8px 12px;
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .filter-table td {
+            padding: 8px 12px;
+        }
+
+        .filter-table input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .filter-table input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(48, 109, 189, 0.1);
+        }
+
+        .projects-table {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .projects-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-head {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .table-head th {
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .table-body tr {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .table-body tr:last-child {
+            border-bottom: none;
+        }
+
+        .table-body td {
+            padding: 15px 20px;
+            color: var(--secondary);
+        }
+
+        .table-body tr:hover {
+            background-color: rgba(174, 204, 230, 0.2);
+        }
+
+        .table-button-open-nir {
+            text-align: center;
+        }
+
+        .table-button-open-nir button {
+            background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .table-button-open-nir button:hover {
+            background-color: #e08d00;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-button-search {
+            text-align: right;
+        }
+
+        .table-button-search button {
+            background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .table-button-search button:hover {
+            background-color: #e08d00;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-body td:last-child {
+            width: 120px; /* Фиксированная ширина для колонки с кнопкой */
+        }
+    </style>
+</head>
+<body>
+    <!-- Фильтры Дата (С какого по какое), + Поиск (Название + Ключевые слова) --> <!-- Тут кнопочк с переходом на прфиль -->
+    <!-- Название НИР, Автор, Дата публикации, Руководитель(Препод) + Кнопочка для открытия -->
+    <div class="page-container">
+        <nav class="navigation-bar">
+            <div class="title">НИР 3000</div>
+            
+            <div class="nav-elem">
+                <form th:action="@{/student/profile}" method="post">
+                    <button type="button">Профиль</button>
+                    <!-- <input type="hidden" th:field="*{id}" th:value=""> Тут обсудить--> 
+                </form>
+            </div>
+
+        </nav>
+
+        <div class="projects-group">
+            <div class="filter-group">
+                <div class="filter-title">Выберите фильтр:</div>
+                <table class="filter-table">
+                    <thead class="flter-head">
+                        <tr>
+                            <th>С:</th>
+                            <th>По:</th>
+                            <th>Поиск (По названию или ключевым словам)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <form th:action="@{teacher/main/applyFilter}" method="post" th:object="${search}">
+                                <td>
+                                    <input type="date" id="startDateFilter">
+                                </td>
+                                <td>
+                                    <input type="date" id="endDateFilter">
+                                </td>
+                                <td>
+                                    <input type="text" th:field="*{search}">
+                                </td>
+                                <td>
+                                    <div class="table-button-search">
+                                        <button type="button">Найти</button>
+                                    </div>
+                                </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="projects-table">
+                <table>
+                    <thead class="table-head">
+                        <tr>
+                            <th>Название НИР</th>
+                            <th>Авторы</th>
+                            <th>Дата публикации</th>
+                            <th>Руководитель НИР</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        <tr th:each="projectDTO : ${projectsList}" th:if="${!projectsList.empty}">
+                            <td th:text = "${projectDTO.name}"></td>
+                            <td th:each=" authorName : ${projectDTO.authorsNames}" th:text += "${authorName} + ' '"></td>
+                            <td th:text = "${projectDTO.publicationDate}"></td>
+                            <td th:text = "${projectDTO.teacherName}"></td>
+                            <td>
+                                <div class="table-button-open-nir">
+                                    <!-- <form th:action="@{/teacher/main/nir"} method="get"> -->
+                                    <form th:data-id="@{projectDTO.id}" method="get">
+                                        <button type="button">Открыть</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="empty-row" th:if="${projectsList.empty}">
+                            <td colspan="6">Нет данных для отображения</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
