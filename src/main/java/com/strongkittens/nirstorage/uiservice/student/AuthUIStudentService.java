@@ -23,7 +23,7 @@ public class AuthUIStudentService {
         return "student_login";
     }
 
-    public String postSignIn(Model model, UserDTO userDTO, HttpServletResponse response) {
+    public String postSignIn(UserDTO userDTO, HttpServletResponse response) {
         CustomResponse authResponse = authService.signIn(userDTO);
         SessionCookieProvider.setUpStudentSessionCookie(response, authResponse.getCookieSessionId());
         return "redirect:/student/main";
@@ -36,6 +36,6 @@ public class AuthUIStudentService {
 
     public String postSingUpForm(UserDTO userDTO) {
         authService.signUp(userDTO, Role.STUDENT);
-        return "student_login";
+        return "redirect:/auth/student/sign-in";
     }
 }
