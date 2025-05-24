@@ -9,7 +9,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -42,7 +41,7 @@ public class Project {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    private int grade;
+    private Integer grade;
 
     @ManyToMany(mappedBy = "projects")
     private List<Student> students;

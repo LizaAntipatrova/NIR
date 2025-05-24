@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,12 +17,12 @@ public class ProfileStudentService {
     private final StudentService studentService;
     private final ProjectService projectService;
 
-    public StudentDTO getStudentDTO(Long id){
+    public StudentDTO getStudentByID(Long id) {
         Student foundStudent = studentService.findStudentById(id);
         return StudentToStudentDTOConverter.convertProjectToProjectDTO(foundStudent);
     }
 
-    public void updateStudentProfileData(StudentDTO studentDTO){
+    public void updateStudentProfileData(StudentDTO studentDTO) {
         Student student = studentService.findStudentById(studentDTO.getId());
 
         if (studentDTO.getLastName() != null) {
@@ -44,7 +43,8 @@ public class ProfileStudentService {
 
         studentService.save(student);
     }
-    public List<ProjectDTO> getStudentsProjects(Long id){
+
+    public List<ProjectDTO> getStudentsProjects(Long id) {
         Student foundStudent = studentService.findStudentById(id);
         return foundStudent.getProjects().stream()
                 .map(ProjectToProjectDTOConverter::convertProjectToProjectDTO)
