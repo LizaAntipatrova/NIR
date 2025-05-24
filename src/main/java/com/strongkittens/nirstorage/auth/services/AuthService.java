@@ -33,6 +33,7 @@ public class AuthService {
 
     public boolean signUp(UserDTO loginDTO, Role role) {
         userService.createUser(loginDTO.getLogin(), passwordEncoder.encode(loginDTO.getPassword()), role);
+
         return true;
     }
 

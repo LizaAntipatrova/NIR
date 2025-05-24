@@ -15,6 +15,5 @@ public class StudentDTO {
     private String middleName;
     private String phone;
     private String group;
-
     private String email;
 }

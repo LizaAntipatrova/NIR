@@ -38,7 +38,7 @@ public class ProfileStudentService {
             student.setPhone(studentDTO.getPhone());
         }
         if (studentDTO.getGroup() != null) {
-            student.setGroup(studentDTO.getGroup());
+            student.setGroupName(studentDTO.getGroup());
         }
 
         studentService.save(student);

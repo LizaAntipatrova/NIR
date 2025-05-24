@@ -22,7 +22,6 @@ public class Teacher {
     private String firstName;
     private String middleName;
     private String phone;
-    private String group;
     @Enumerated(value = EnumType.STRING)
     private Job job;
     @OneToOne(cascade = CascadeType.ALL)

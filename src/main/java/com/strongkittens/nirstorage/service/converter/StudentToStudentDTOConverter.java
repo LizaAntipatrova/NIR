@@ -11,7 +11,7 @@ public class StudentToStudentDTOConverter {
         studentDTO.setFirstName(student.getFirstName());
         studentDTO.setMiddleName(student.getMiddleName());
         studentDTO.setPhone(student.getPhone());
-        studentDTO.setGroup(student.getGroup());
+        studentDTO.setGroup(student.getGroupName());
         studentDTO.setEmail(student.getUser().getLogin());
         return studentDTO;
     }

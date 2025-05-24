@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final StudentService studentService;
+    private final TeacherService teacherService;
 
     private User save(User user) {
         return userRepository.save(user);
@@ -27,6 +29,11 @@ public class UserService {
         user.setLogin(login);
         user.setPassword(password);
         user.setRole(role);
+        if (role.equals(Role.STUDENT)){
+            studentService.createEmptyStudent(user);
+        }else if(role.equals(Role.TEACHER)){
+            teacherService.createEmptyTeacher(user);
+        }
 
         return save(user);
     }
