@@ -1,5 +1,6 @@
 package com.strongkittens.nirstorage.data.entity;
 
+import com.strongkittens.nirstorage.data.entity.email.ValidEmail;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,10 +25,13 @@ public class Teacher {
     private String phone;
     @Enumerated(value = EnumType.STRING)
     private Job job;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
     private List<Project> projects;
+
+
 }

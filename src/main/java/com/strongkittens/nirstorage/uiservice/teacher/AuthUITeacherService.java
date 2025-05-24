@@ -36,6 +36,6 @@ public class AuthUITeacherService {
 
     public String postSingUpForm(UserDTO userDTO) {
         authService.signUp(userDTO, Role.TEACHER);
-        return "teacher_login";
+        return "redirect:/auth/teacher/sign-in";
     }
 }

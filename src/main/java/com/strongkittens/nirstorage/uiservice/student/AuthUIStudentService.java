@@ -26,7 +26,7 @@ public class AuthUIStudentService {
     public String postSignIn(Model model, UserDTO userDTO, HttpServletResponse response) {
         CustomResponse authResponse = authService.signIn(userDTO);
         SessionCookieProvider.setUpStudentSessionCookie(response, authResponse.getCookieSessionId());
-        return "redirect:/student/main";
+        return "redirect:/student/main/" + authResponse.getUserId();
     }
 
     public String getSignUpForm(Model model) {

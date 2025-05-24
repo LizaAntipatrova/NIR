@@ -197,11 +197,12 @@
             <div class="title">НИР 3000</div> 
 
             <div class="nav-elem">
-                <form th:action="@{}" method="post">
+                <form th:action="@{/teacher/profile/edit}" method="get">
                     <button type="submit">Редактировать профиль</button>
+
                 </form>
-                <form th:action="@{}" method="post">
-                    <button type="submit">Меню (Придумать норм название для кнопки)</button>
+                <form th:action="@{/teacher/main}" method="get">
+                    <button type="submit">На главную</button>
                 </form>
             </div>
         </nav>
@@ -212,25 +213,29 @@
                 <div class="name-container">
                     <div class="info-row">
                         <div>Фамилия</div>
-                        <div th:text="${lastName}"></div>
+                        <div th:text="${teacherDTO.lastName}"></div>
                     </div>
                     <div class="info-row">
                         <div>Имя</div>
-                        <div th:text="${firstName}"></div>
+                        <div th:text="${teacherDTO.firstName}"></div>
                     </div>
                     <div class="info-row">
                         <div>Отчество</div>
-                        <div th:text="${middleName}"></div>
+                        <div th:text="${teacherDTO.middleName}"></div>
                     </div>
                 </div>
                 <div class="profesion-container">
                     <div class="info-row">
                         <div>Должность</div>
-                        <div th:text="${}"></div>
+                        <div th:text="${teacherDTO.job}"></div>
                     </div>
                     <div class="info-row">
-                        <div>Что-то</div>
-                        <div th:text="${}"></div>
+                        <div>Телефон</div>
+                        <div th:text="${teacherDTO.phone}"></div>
+                    </div>
+                    <div class="info-row">
+                        <div>Почта</div>
+                        <div th:text="${teacherDTO.email}"></div>
                     </div>
                 </div>
             </div>

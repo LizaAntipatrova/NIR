@@ -140,43 +140,49 @@
     </style>
 </head>
 <body>
-    <div class="page-container">
-        <nav class="navigation-bar">
-            <div class="title">НИР 3000</div> 
+    <form th:action="@{/teacher/profile/edit/save}" method="post" th:object="${teacherDTO}">
+        <div class="page-container">
+            <nav class="navigation-bar">
+                <div class="title">НИР 3000</div>
+                <div class = "nav-elem">
+
+                        <button type="submit">Сохранить изменения</button>
+
+                </div>
+
+            </nav>
 
             <div class="nav-elem">
-                <form th:action="@{}" method="post">
-                    <button type="submit">Сохранить изменения</button>
-                </form>
-            </div>
-        </nav>
-        
+                    <div class="profile-container">
+                        <div class="main-info-container">
+                            <!-- Здесь располагается основная информация -->
+                            <div class="info-row">
+                                <div>Фамилия</div>
+                                <input class="edit-input" type="text" th:text="${lastName}" th:field="*{lastName}">
+                            </div>
+                            <div class="info-row">
+                                <div>Имя</div>
+                                <input class="edit-input" type="text" th:text="${firstName}" th:field="*{firstName}">
+                            </div>
+                            <div class="info-row">
+                                <div>Отчество</div>
+                                <input class="edit-input" type="text" th:text="${middleName}" th:field="*{middleName}">
+                            </div>
+                            <div class="info-row">
+                                <div>Телефон</div>
+                                <input class="edit-input" type="text" th:text="${phone}" th:field="*{phone}">
+                            </div>
+                            <div class="info-row">
+                                <div>Должность</div>
+                                <input class="edit-input" type="text" th:text="${job}" th:field="*{job}">
+                            </div>
+                        </div>
 
-        <div class="profile-container">
-            <div class="main-info-container">
-                <!-- Здесь располагается основная информация -->
-                <div class="info-row">
-                    <div>Имя</div>
-                    <input class="edit-input" type="text" th:text="${}" th:field="*{}">
-                </div>
-                <div class="info-row">
-                    <div>Фамилия</div>
-                    <input class="edit-input" type="text" th:text="${}" th:field="*{}">
-                </div>
-                <div class="info-row">
-                    <div>Отчество</div>
-                    <input class="edit-input" type="text" th:text="${}" th:field="*{}">
-                </div>
-                <div class="info-row">
-                    <div>Должность</div>
-                    <input class="edit-input" type="text" th:text="${}" th:field="*{}">
-                </div>
-                <div class="info-row">
-                    <div>Что-то</div>
-                    <input class="edit-input" type="text" th:text="${}" th:field="*{}">
-                </div>
+
+            </div>
+
             </div>
         </div>
-    </div>
+    </form>
 </body>
 </html>

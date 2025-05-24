@@ -1,5 +1,6 @@
 package com.strongkittens.nirstorage.service;
 
+import com.strongkittens.nirstorage.data.entity.Project;
 import com.strongkittens.nirstorage.data.entity.Teacher;
 import com.strongkittens.nirstorage.data.entity.User;
 import com.strongkittens.nirstorage.data.repository.TeacherRepository;
