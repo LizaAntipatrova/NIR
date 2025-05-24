@@ -6,15 +6,15 @@ import com.strongkittens.nirstorage.dto.StudentDTO;
 import com.strongkittens.nirstorage.dto.TeacherDTO;
 
 public class TeacherToTeacherDTOConverter {
-    public static Teacher convertNewToOld(Teacher oldTeacher, TeacherDTO newDTO){
+    public static Teacher convertNewToOld(Teacher oldTeacher, TeacherDTO newDTO) {
         oldTeacher.setLastName(newDTO.getLastName());
         oldTeacher.setFirstName(newDTO.getFirstName());
         oldTeacher.setMiddleName(newDTO.getMiddleName());
         oldTeacher.setPhone(newDTO.getPhone());
         oldTeacher.setJob(newDTO.getJob());
         return oldTeacher;
-
-    public static TeacherDTO convertTeacherToTeacherDTO(Teacher teacher) {
+    }
+    public static TeacherDTO convertTeacherToTeacherDTO(Teacher teacher){
         TeacherDTO teacherDTO = new TeacherDTO();
         teacherDTO.setId(teacher.getId());
         teacherDTO.setLastName(teacher.getLastName());
