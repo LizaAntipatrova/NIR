@@ -223,11 +223,11 @@
             <div class="title">НИР 3000</div>
             
             <div class="nav-elem">
-                <form th:action="@{/student/load}" method="post">
+                <form th:action="@{/student/load}" method="get">
                     <button type="submit">Загрузить НИР</button>
                 </form>
-                <form th:action="@{/student/profile}" method="post">
-                    <button type="button">Профиль</button>
+                <form th:action="@{/student/profile}" method="get">
+                    <button type="submit">Профиль</button>
                     <!-- <input type="hidden" th:field="*{id}" th:value=""> Тут обсудить--> 
                 </form>
             </div>
