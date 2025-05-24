@@ -253,10 +253,10 @@ body {
         <nav class="navigation-bar">
             <div class="title">НИР 3000</div>
             <div class="nav-elem">
-                <form th:action="@{/student/load}" method="post" th:object="${createProjectDTO}">
-                    <button type="submit">Загрузить НИР</button>
-                </form>
-                <form th:action="@{/student/profile}" method="post">
+<!--                <form th:action="@{/student/load}" method="post" th:object="${createProjectDTO}">-->
+                    <button th:formaction="@{/student/load}" th:method="post" th:object="${createProjectDTO}" type="submit">Загрузить НИР</button>
+<!--                </form>-->
+                <form th:action="@{/student/profile}" method="get">
                     <button type="button">Профиль</button>
                     <!-- <input type="hidden" th:field="*{id}" th:value=""> Тут обсудить--> 
                 </form>
@@ -266,39 +266,40 @@ body {
 
             <div class="data-row">
                 <div>Название проекта:</div>
-                <input class="data-input" type="text" th:field="*{name}">
+                <input class="data-input" type="text" th:field="*{createProjectDTO.name}">
             </div>
 
             <!-- TODO: Тут муть с датой -->
-            <input type="hidden" th:field="*{publicationDate}" th:value="${#dates.format(#dates.createNow(),'YYYY/MM/dd')}">
+            <input type="hidden" th:field="*{createProjectDTO.publicationDate}" th:value="${#dates.format(#dates.createNow(),'YYYY/MM/dd')}">
 
             <div class="data-row">
                 <div>Описание:</div>
-                <textarea class="data-input-description" class="data-input" type="text" th:field="*{description}"></textarea>
+                <textarea class="data-input" type="text" th:field="*{createProjectDTO.description}"></textarea>
             </div>
 
             <div class="data-row">
                 <div>Ключевые слова:</div>
-                <textarea class="data-input-key-words" class="data-input" type="text" th:field="*{keyWords}"></textarea>
+                <textarea  class="data-input" type="text" th:field="*{createProjectDTO.keyWords}"></textarea>
             </div>
             <!-- Дальше Бога нет... или есть...-->
             <div class="data-row">
                 <div>Выберите научного руководителя:</div>
-                <select class="select-teacher" th:field="*{}" required th:field="*{teacherId}">
+                <select class="select-teacher" required th:field="*{createProjectDTO.teacherId}">
                     <option value="">--Выберите научного руководителя--</option>
-                    <option th:each="teacher : ${listTeachers}" th:value="${teacher.id}" th:text="${teacher.lastName + teacher.firstName + teacher.middleName}"></option>
+                    <option th:each="teacher : ${listTeachers}" th:value="${teacher.id}" th:text="${teacher.lastName + ' ' + teacher.firstName + ' ' + teacher.middleName}"></option>
                 </select>
             </div>
             <div class="data-row">
                 <div class="big-letters-lable">Автор(ы)</div>
-                <select class="select-sudent" th:field="*{}" required id="authorName" th:field="*{authorsId}">
+                <select class="select-sudent" required id="authorName" th:field="*{createProjectDTO.authorsId}">
                     <option value="">--Выберите студента--</option>
-                    <option th:each="student : ${listStudents}" th:value="${student.id}" th:text="${student.lastName + student.firstName + student.middleName}"></option>
+                    <option th:each="student : ${listStudents}" th:value="${student.id}" th:text="${student.lastName + ' ' + student.firstName + ' ' + student.middleName}"></option>
                 </select>
                 <!-- <input class="data-input" type="text" th:field="*{authorsNames}" id="authorName"> -->
                 <button type="button" id="addAuthor">Добавить</button>
             </div>
-            <div class="data-row"  th:if="${not #list.isEmpty(projectDTO.authorsNames)}" id="authorsSelection">
+<!--            th:if="${not #list.isEmpty(authorsNames)}"-->
+            <div class="data-row" id="authorsSelection">
                 <table>
                     <thead>
                         <tr>
@@ -307,15 +308,15 @@ body {
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        <tr th:each="authorName, iterStat : ${authorsNames}" th:if="${!authorsNames.isEmpty}">
+                        <tr th:each="authorId, iterStat : ${createProjectDTO.authorsId}" th:if="${!authorId.isEmpty}">
                             <td th:text="${iterStat.index + 1}"></td>
                             <td>
-                                <span th:text="${authorName}"></span>
-                                <input type="hidden" th:name="|authorsNames[${iterStat.index}]|" 
-                                    th:value="${authorName}">
+                                <span th:text="${authorId}"></span>
+                                <input type="hidden" th:name="|authorsId[${iterStat.index}]|"
+                                    th:value="${authorId}">
                             </td>
                         </tr>
-                        <tr class="empty-row" th:if="${authorsNames.isEmpty}">
+                        <tr class="empty-row" th:if="${createProjectDTO.authorsId.isEmpty}">
                             <td colspan="6">Нет данных для отображения</td>
                         </tr>
                     </tbody>
@@ -324,7 +325,7 @@ body {
             <div class="data-row">
                 <div>Прикрепите НИР</div>
                 <!-- TODO: Тут муть с файлами  -->
-                <input type="file" class="file-input" accept="image/*" enctype="multipart/form-data" th:field="*{file}">
+                <input type="file" class="file-input" accept="application/pdf/*" enctype="multipart/form-data" th:field="*{createProjectDTO.file}">
             </div>
         </div>
     </div>

@@ -1,6 +1,8 @@
 package com.strongkittens.nirstorage.service;
 
 import com.strongkittens.nirstorage.data.repository.TeacherRepository;
+import com.strongkittens.nirstorage.dto.TeacherDTO;
+import com.strongkittens.nirstorage.service.converter.TeacherToTeacherDTOConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +15,9 @@ public class TeacherListUlyulyuService {
 
     private final TeacherRepository teacherRepository;
 
-    public List<String> getAllTeachersFullNamesUUUU() {
+    public List<TeacherDTO> getAllTeachersFullNamesUUUU() {
         return teacherRepository.findAll().stream()
-                .map(teacher -> String.join(" ",
-                        teacher.getLastName(),
-                        teacher.getFirstName(),
-                        teacher.getMiddleName()
-                ).trim())
+                .map(TeacherToTeacherDTOConverter::convertTeacherToTeacherDTO)
                 .collect(Collectors.toList());
     }
 

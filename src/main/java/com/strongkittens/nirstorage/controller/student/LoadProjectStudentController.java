@@ -14,8 +14,8 @@ public class LoadProjectStudentController {
     private final LoadProjectUIStudentService loadProjectUIStudentService;
 
     @GetMapping
-    public String showLoadProjectForm(Model model){
-        return loadProjectUIStudentService.getStudentLoadProjectForm(model);
+    public String showLoadProjectForm(Model model, @RequestHeader("Cookie") String cookieHeader){
+        return loadProjectUIStudentService.getStudentLoadProjectForm(model, cookieHeader);
     }
     @PostMapping
     public String loadProject(@ModelAttribute("createProjectDTO")CreateProjectDTO createProjectDTO, @RequestHeader("Cookie") String cookieHeader){
