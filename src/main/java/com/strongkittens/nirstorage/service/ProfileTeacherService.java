@@ -1,10 +1,6 @@
 package com.strongkittens.nirstorage.service;
 
-
-import com.strongkittens.nirstorage.data.entity.Job;
-import com.strongkittens.nirstorage.data.entity.Student;
 import com.strongkittens.nirstorage.data.entity.Teacher;
-import com.strongkittens.nirstorage.dto.StudentDTO;
 import com.strongkittens.nirstorage.dto.TeacherDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
