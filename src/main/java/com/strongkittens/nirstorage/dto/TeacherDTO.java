@@ -1,8 +1,6 @@
 package com.strongkittens.nirstorage.dto;
 
 import com.strongkittens.nirstorage.data.entity.Job;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

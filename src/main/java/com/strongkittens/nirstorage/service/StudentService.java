@@ -2,7 +2,6 @@ package com.strongkittens.nirstorage.service;
 
 import com.strongkittens.nirstorage.data.entity.Student;
 import com.strongkittens.nirstorage.data.repository.StudentRepository;
-import com.strongkittens.nirstorage.dto.StudentDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public Student findStudentById(Long id){
+    public Student findStudentById(Long id) {
         return studentRepository.findById(id).orElse(null);
     }
 
