@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/auth/student")
 public class AuthStudentController {
-    private final AuthService authService;
+
     private final AuthUIStudentService authUIService;
 
     //показ формы входа студента
@@ -28,8 +28,8 @@ public class AuthStudentController {
 
     //обработка данных формы входа студента
     @PostMapping("/sign-in")
-    public String signIn(@ModelAttribute("userDTO") UserDTO userDTO, Model model, HttpServletResponse response){
-        return authUIService.postSignIn(model, userDTO, response);
+    public String signIn(@ModelAttribute("userDTO") UserDTO userDTO, HttpServletResponse response){
+        return authUIService.postSignIn( userDTO, response);
     }
 
     //показ формы регистрации
@@ -40,7 +40,7 @@ public class AuthStudentController {
 
     //обработка формы регистрации
     @PostMapping("/sign-up")
-    public String signUpTeacher(@ModelAttribute("userDTO") UserDTO userDTO, Model model){
+    public String signUp(@ModelAttribute("userDTO") UserDTO userDTO){
         return authUIService.postSingUpForm(userDTO);
     }
 

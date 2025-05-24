@@ -19,7 +19,7 @@ public class ProfileStudentService {
 
     public StudentDTO getStudentByUserId(Long id) {
         Student foundStudent = studentService.findStudentByUserId(id);
-        return StudentToStudentDTOConverter.convertProjectToProjectDTO(foundStudent);
+        return StudentToStudentDTOConverter.convertStudentToStudentDTO(foundStudent);
     }
 
     public void updateStudentProfileData(StudentDTO studentDTO) {

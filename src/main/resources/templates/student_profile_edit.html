@@ -145,7 +145,7 @@
             <div class="title">НИР 3000</div> 
 
             <div class="nav-elem">
-                <form th:action="@{}" method="post">
+                <form th:action="@{}" method="post" th:object="${studentDTO}">
                     <button type="submit">Сохранить изменения</button>
                 </form>
             </div>
@@ -157,23 +157,27 @@
                 <!-- Здесь располагается основная информация -->
                 <div class="info-row">
                     <div>Имя</div>
-                    <input class="edit-input" type="text" th:text="${}" th:field="*{}">
+                    <input class="edit-input" type="text" th:text="${lastName}" th:field="*{lastName}">
                 </div>
                 <div class="info-row">
                     <div>Фамилия</div>
-                    <input class="edit-input" type="text" th:text="${}" th:field="*{}">
+                    <input class="edit-input" type="text" th:text="${firstName}" th:field="*{firstName}">
                 </div>
                 <div class="info-row">
                     <div>Отчество</div>
-                    <input class="edit-input" type="text" th:text="${}" th:field="*{}">
+                    <input class="edit-input" type="text" th:text="${middleName}" th:field="*{middleName}">
                 </div>
                 <div class="info-row">
                     <div>Группа</div>
-                    <input class="edit-input" type="text" th:text="${}" th:field="*{}">
+                    <input class="edit-input" type="text" th:text="${group}" th:field="*{group}">
                 </div>
                 <div class="info-row">
-                    <div>Курс</div>
-                    <input class="edit-input" type="text" th:text="${}" th:field="*{}">
+                    <div>Номер телефона</div>
+                    <input class="edit-input" type="text" th:text="${phone}" th:field="*{phone}">
+                </div>
+                <div class="info-row">
+                    <div>Почта</div>
+                    <input class="edit-input" type="text" th:text="${email}" th:field="*{email}">
                 </div>
             </div>
         </div>

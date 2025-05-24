@@ -1,12 +1,11 @@
 package com.strongkittens.nirstorage.controller.student;
 
+import com.strongkittens.nirstorage.dto.StudentDTO;
 import com.strongkittens.nirstorage.uiservice.student.ProfileUIStudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,8 +17,13 @@ public class ProfileStudentController {
     public String showProfileStudentForm(Model model, @RequestHeader("Cookie") String cookieHeader){
         return profileUIStudentService.getStudentProfileForm(model, cookieHeader);
     }
+    @GetMapping("/edit")
+    public String showProfileEditStudentForm(Model model, @RequestHeader("Cookie") String cookieHeader){
+        return profileUIStudentService.getStudentEditProfileForm(model, cookieHeader);
+    }
 
-
-
-
+    @PostMapping("/edit")
+    public String editStudentProfile(@ModelAttribute("studentDTO") StudentDTO studentDTO){
+        return profileUIStudentService.postStudentEditProfileForm(studentDTO);
+    }
 }
