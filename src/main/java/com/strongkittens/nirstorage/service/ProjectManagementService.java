@@ -33,7 +33,7 @@ public class ProjectManagementService {
         project.setPublicationDate(LocalDate.now());
         project.setDescription(createProjectDTO.getDescription());
         project.setKeyWords(createProjectDTO.getKeyWords());
-        project.setTeacher(teacherService.findTeacherByUserId(createProjectDTO.getTeacherId()));
+        project.setTeacher(teacherService.findTeacherById(createProjectDTO.getTeacherId()));
 
         project.setStudents(createProjectDTO.getAuthorsId().stream().map(studentService::findStudentByUserId).toList());
 

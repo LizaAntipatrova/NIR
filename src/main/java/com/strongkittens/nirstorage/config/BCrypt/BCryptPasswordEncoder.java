@@ -1,4 +1,4 @@
-package com.strongkittens.nirstorage.auth.config.BCrypt;
+package com.strongkittens.nirstorage.config.BCrypt;
 
 
 import lombok.RequiredArgsConstructor;

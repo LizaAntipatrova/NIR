@@ -1,7 +1,7 @@
 package com.strongkittens.nirstorage.auth.services;
 
 
-import com.strongkittens.nirstorage.auth.config.BCrypt.BCryptPasswordEncoder;
+import com.strongkittens.nirstorage.config.BCrypt.BCryptPasswordEncoder;
 import com.strongkittens.nirstorage.auth.data.entity.session.Session;
 import com.strongkittens.nirstorage.auth.exceptions.data.UnregisteredUserException;
 import com.strongkittens.nirstorage.auth.services.parser.AuthorizationHeaderToCredentialParser;

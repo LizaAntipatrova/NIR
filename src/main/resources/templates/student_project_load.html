@@ -250,7 +250,7 @@ body {
 </head>
 <body>
     <div class="page-container">
-        <form th:object="${createProjectDTO}">
+        <form th:object="${createProjectDTO}" enctype="multipart/form-data">
             <nav class="navigation-bar">
                 <div class="title">НИР 3000</div>
                 <div class="nav-elem">
@@ -287,7 +287,7 @@ body {
                 </div>
                 <div class="data-row">
                     <div class="big-letters-lable">Автор(ы)</div>
-                    <select class="select-sudent" required id="authorName" th:field="*{authorsId}">
+                    <select class="select-sudent"  id="authorName" th:field="*{authorsId}">
                         <option value="">--Выберите студента--</option>
                         <option th:each="student : ${listStudents}" th:value="${student.id}" th:text="${student.lastName + ' ' + student.firstName + ' ' + student.middleName}"></option>
                     </select>
@@ -321,7 +321,7 @@ body {
                 <div class="data-row">
                     <div>Прикрепите НИР</div>
                     <!-- TODO: Тут муть с файлами  -->
-                    <input type="file" class="file-input" accept="application/pdf/*" enctype="multipart/form-data" th:field="*{file}">
+                    <input type="file" class="file-input" accept="application/pdf/*" formenctype="multipart/form-data" th:field="*{file}">
                 </div>
             </div>
         </form>

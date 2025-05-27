@@ -1,6 +1,6 @@
-package com.strongkittens.nirstorage.auth.config;
+package com.strongkittens.nirstorage.config;
 
-import com.strongkittens.nirstorage.auth.config.BCrypt.BCryptPasswordEncoder;
+import com.strongkittens.nirstorage.config.BCrypt.BCryptPasswordEncoder;
 import com.strongkittens.nirstorage.auth.filter.SessionExistFilter;
 import com.strongkittens.nirstorage.auth.services.RedisSessionService;
 import lombok.RequiredArgsConstructor;

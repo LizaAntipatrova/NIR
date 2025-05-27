@@ -6,7 +6,7 @@ import com.strongkittens.nirstorage.dto.StudentDTO;
 public class StudentToStudentDTOConverter {
     public static StudentDTO convertStudentToStudentDTO(Student student) {
         StudentDTO studentDTO = new StudentDTO();
-        studentDTO.setId(student.getId());
+        studentDTO.setId(student.getUser().getId());
         studentDTO.setLastName(student.getLastName());
         studentDTO.setFirstName(student.getFirstName());
         studentDTO.setMiddleName(student.getMiddleName());

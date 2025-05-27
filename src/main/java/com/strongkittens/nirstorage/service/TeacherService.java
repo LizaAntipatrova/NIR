@@ -21,6 +21,9 @@ public class TeacherService {
     public Teacher findTeacherByUserId(Long id) {
         return teacherRepository.findTeacherByUser_Id(id);
     }
+    public Teacher findTeacherById(Long id) {
+        return teacherRepository.findTeacherById(id);
+    }
 
     public Teacher createEmptyTeacher(User user){
         Teacher teacher = new Teacher();
