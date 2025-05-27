@@ -254,8 +254,8 @@ body {
             <nav class="navigation-bar">
                 <div class="title">НИР 3000</div>
                 <div class="nav-elem">
-                    <button th:formaction="@{student/load}" th:method="post"  type="submit">Загрузить НИР</button>
-                    <button th:formaction="@{student/profile}" th:method="get" type="submit">Профиль</button>
+                    <button th:formaction="@{/student/load}" th:formmethod="post"  type="submit">Загрузить НИР</button>
+                    <button th:formaction="@{/student/profile}" th:formmethod="get" type="submit">Профиль</button>
                 </div>
             </nav>
             <div class="load-container">
