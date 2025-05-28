@@ -253,11 +253,11 @@ body {
             </div>
             <div th:if="${projectDTO.grade != null}" class="grade-elem" >
                 <h2 class="section-title">Оценка:</h2> 
-                <span class="grade-value" th:text="${projectDTO.grade}">5</span>
+                <span class="grade-value" th:text="${projectDTO.grade}"></span>
             </div>
             <div class="info-elem">
                 <h2 class="section-title">Описание</h2>
-                <textarea class="data-input-description" class="data-input" disabled="true" th:text="${projectDTO.description}"></textarea>
+                <textarea class="data-input-description" disabled="true" th:text="${projectDTO.description}"></textarea>
             </div>
             <div class="info-elem">
                 <h2 class="section-title">Файл работы</h2>

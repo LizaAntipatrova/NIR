@@ -25,4 +25,5 @@ public class MainTeacherController {
     public String applyFilter(@ModelAttribute("search") String filter, Model model) {
         return mainUITeacherService.getProjectsBySearch(filter, model);
     }
+
 }
