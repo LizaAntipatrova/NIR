@@ -1,6 +1,7 @@
 package com.strongkittens.nirstorage.controller.student;
 
 import com.strongkittens.nirstorage.dto.StudentDTO;
+import com.strongkittens.nirstorage.uiservice.student.MainUIStudentService;
 import com.strongkittens.nirstorage.uiservice.student.ProfileUIStudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/student/profile")
 public class ProfileStudentController {
     private final ProfileUIStudentService profileUIStudentService;
+    private final MainUIStudentService mainUIStudentService;
+
 
     @GetMapping
     public String showProfileStudentForm(Model model, @RequestHeader("Cookie") String cookieHeader){
@@ -25,5 +28,10 @@ public class ProfileStudentController {
     @PostMapping("/edit")
     public String editStudentProfile(@ModelAttribute("studentDTO") StudentDTO studentDTO, @RequestHeader("Cookie") String cookie){
         return profileUIStudentService.postStudentEditProfileForm(studentDTO, cookie);
+    }
+
+    @GetMapping("/nir")
+    public String openProjectForm(@RequestParam("id") Long nirId, Model model) {
+        return mainUIStudentService.getProjectForm(nirId, model);
     }
 }
