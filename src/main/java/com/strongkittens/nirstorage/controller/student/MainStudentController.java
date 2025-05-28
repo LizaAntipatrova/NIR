@@ -26,9 +26,6 @@ public class MainStudentController {
         return mainUIStudentService.getProjectsBySearch(filter, model);
     }
 
-    @GetMapping("/nir")
-    public String openProjectForm(@RequestParam("id") Long nirId, Model model) {
-        return mainUIStudentService.getProjectForm(nirId, model);
-    }
+
 
 }

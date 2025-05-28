@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 public class ProfileStudentController {
     private final ProfileUIStudentService profileUIStudentService;
     private final MainUIStudentService mainUIStudentService;
-    private final LoadProjectUIStudentService loadProjectUIStudentService;
 
 
     @GetMapping
@@ -32,13 +31,5 @@ public class ProfileStudentController {
         return profileUIStudentService.postStudentEditProfileForm(studentDTO, cookie);
     }
 
-    @GetMapping("/nir")
-    public String openProjectForm(@RequestParam("id") Long nirId, Model model) {
-        return mainUIStudentService.getProjectForm(nirId, model);
-    }
 
-    @GetMapping("/nir/download")
-    public String downloadProjectFile(@RequestParam("id") Long nirId, Model model) {
-        return loadProjectUIStudentService.downloadFileByProjectId(nirId, model);
-    }
 }

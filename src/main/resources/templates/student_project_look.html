@@ -261,10 +261,8 @@ body {
             </div>
             <div class="info-elem">
                 <h2 class="section-title">Файл работы</h2>
-                <a th:if="${projectDTO.file != null}"
-                    th:href="@{'/download/' + ${projectDTO.id}}"
-                    class="file-download">
-                    Скачать файл
+                <a th:if="${projectDTO.file != null}">
+                    <button class="file-download" th:download-id="${projectDTO.id}">Скачать</button>
                 </a>
                 <div th:if="${projectDTO.file == null}" class="info-value">
                     Файл не прикреплен
@@ -289,5 +287,12 @@ body {
         </div>
     </div>
 </div>
+<script>
+    // Обработка кнопки "Скачать файл"
+    document.querySelector('.file-download').addEventListener('click', function() {
+        const nirId = this.getAttribute('download-id');
+        window.location.href = 'nir/download?id=' + nirId;
+    });
+</script>
 </body>
 </html>

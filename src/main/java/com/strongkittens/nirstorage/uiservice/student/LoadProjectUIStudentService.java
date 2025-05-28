@@ -2,6 +2,7 @@ package com.strongkittens.nirstorage.uiservice.student;
 
 import com.strongkittens.nirstorage.auth.services.AuthService;
 import com.strongkittens.nirstorage.dto.CreateProjectDTO;
+import com.strongkittens.nirstorage.dto.ProjectDTO;
 import com.strongkittens.nirstorage.dto.StudentDTO;
 import com.strongkittens.nirstorage.dto.TeacherDTO;
 import com.strongkittens.nirstorage.service.ProjectManagementService;
@@ -10,6 +11,7 @@ import com.strongkittens.nirstorage.service.TeacherListUlyulyuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +44,9 @@ public class LoadProjectUIStudentService {
         return "redirect:/student/main";
     }
 
-    public String downloadFileByProjectId(Long nirId, Model model) {
-        return "";
+    public MultipartFile downloadFileByProjectId(Long nirId, Model model) {
+        ProjectDTO projectDTO = projectManagementService.getProjectById(nirId);
+        return projectDTO.getFile();
     }
 
 }
