@@ -34,10 +34,6 @@ public class Student {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany
-    @JoinTable(
-            name = "project_contributors",
-            joinColumns = @JoinColumn(name = "project_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id"))
+    @ManyToMany(mappedBy = "students")
     private List<Project> projects;
 }

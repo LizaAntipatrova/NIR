@@ -41,4 +41,9 @@ public class LoadProjectUIStudentService {
         projectManagementService.createProject(createProjectDTO);
         return "redirect:/student/main";
     }
+
+    public String downloadFileByProjectId(Long nirId, Model model) {
+        return "";
+    }
+
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1748463999284-3" author="natul">
+        <dropForeignKeyConstraint baseTableName="project_contributors" constraintName="fk_procon_on_project"/>
+    </changeSet>
+    <changeSet id="1748463999284-4" author="natul">
+        <dropForeignKeyConstraint baseTableName="project_contributors" constraintName="fk_procon_on_student"/>
+    </changeSet>
+    <changeSet id="1748463999284-1" author="natul">
+        <addForeignKeyConstraint baseColumnNames="project_id" baseTableName="project_contributors"
+                                 constraintName="fk_procon_on_project" referencedColumnNames="id"
+                                 referencedTableName="project"/>
+    </changeSet>
+    <changeSet id="1748463999284-2" author="natul">
+        <addForeignKeyConstraint baseColumnNames="student_id" baseTableName="project_contributors"
+                                 constraintName="fk_procon_on_student" referencedColumnNames="id"
+                                 referencedTableName="student"/>
+    </changeSet>
+
+</databaseChangeLog>

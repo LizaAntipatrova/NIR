@@ -45,7 +45,11 @@ public class Project {
 
     private Integer grade;
 
-    @ManyToMany(mappedBy = "projects")
+    @ManyToMany
+    @JoinTable(
+            name = "project_contributors",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id"))
     private List<Student> students;
 
 }
