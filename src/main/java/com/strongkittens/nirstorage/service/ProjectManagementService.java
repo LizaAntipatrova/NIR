@@ -47,5 +47,10 @@ public class ProjectManagementService {
         project = projectService.save(project);
     }
 
+    public void giveGrade(Integer grade, Long projectId){
+        Project project = projectService.getProjectById(projectId);
+        project.setGrade(grade);
+        projectService.save(project);
+    }
 
 }
