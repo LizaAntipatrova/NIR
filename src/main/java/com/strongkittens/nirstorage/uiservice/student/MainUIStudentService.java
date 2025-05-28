@@ -12,8 +12,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -27,14 +29,22 @@ public class MainUIStudentService {
 
     public String getMainStudentForm(Model model) {
         List<ProjectDTO> projectDTOs = projectCatalogService.getAllProjects();
-        model.addAttribute("projectsList", projectDTOs);
-        model.addAttribute("search", new String());
+
+        if (!model.containsAttribute("projectsList")) {
+            model.addAttribute("projectsList", projectDTOs);
+        }
+        if (!model.containsAttribute("search")) {
+            model.addAttribute("search", new String());
+        }
 
         return "student_projects_catalog";
     }
 
-    public String getProjectsBySearch(String filter, Model model) {
-        List<ProjectDTO> projectDTOs = projectCatalogService.findProjectsBySubstring(filter);
+    public String getProjectsBySearch(String filter, RedirectAttributes redirectAttributes, Model model) {
+        Set<ProjectDTO> projectDTOs = projectCatalogService.findProjectsBySubstring(filter);
+
+        redirectAttributes.addFlashAttribute("projectsList", projectDTOs);
+        redirectAttributes.addFlashAttribute("search", filter);
         return "redirect:/student/main";
     }
 

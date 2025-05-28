@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,15 +22,15 @@ public class ProjectCatalogService {
                 .collect(Collectors.toList());
     }
 
-    public List<ProjectDTO> findProjectsBySubstring(String substring) {
+    public Set<ProjectDTO> findProjectsBySubstring(String substring) {
         substring = substring.toLowerCase();
-        List<ProjectDTO> projectDTOS = new ArrayList<>();
+        Set<ProjectDTO> projectDTOS = new HashSet<>();
         projectDTOS.addAll(projectService.getProjectsBySubstringInName(substring).stream()
                 .map(ProjectToProjectDTOConverter::convertProjectToProjectDTO)
-                .toList());
+                .collect(Collectors.toSet()));
         projectDTOS.addAll(projectService.getProjectsBySubstringInKeyWords(substring).stream()
                 .map(ProjectToProjectDTOConverter::convertProjectToProjectDTO)
-                .toList());
+                .collect(Collectors.toSet()));
         return projectDTOS;
     }
 

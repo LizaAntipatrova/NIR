@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,8 +23,8 @@ public class MainStudentController {
     }
 
     @PostMapping("/apply-filter")
-    public String applyFilter(@ModelAttribute("search") String filter, Model model) {
-        return mainUIStudentService.getProjectsBySearch(filter, model);
+    public String applyFilter(@ModelAttribute("search") String filter, RedirectAttributes redirectAttributes, Model model) {
+        return mainUIStudentService.getProjectsBySearch(filter, redirectAttributes, model);
     }
 
 

@@ -329,7 +329,7 @@ body {
                         <span class="grade-value" th:text="${projectDTO.grade}">5</span>
                     </div>
                     <div class="right-grade-part">
-                        <select class="grade-select" th:field="*{grade}">
+                        <select class="grade-select" th:name="grade">
                             <option >-- Выберите оценку --</option>
                             <option th:value="3">3 (Удовлетворительно)</option>
                             <option th:value="4">4 (Хорошо)</option>

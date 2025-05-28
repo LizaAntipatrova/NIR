@@ -248,7 +248,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <form th:action="@{student/main/applyFilter}" method="post" th:object="${search}">
+                            <form th:action="@{/student/main/apply-filter}" method="post" th:object="${search}">
                                 <td>
                                     <input type="date" id="startDateFilter">
                                 </td>
@@ -256,7 +256,7 @@
                                     <input type="date" id="endDateFilter">
                                 </td>
                                 <td>
-                                    <input type="text" th:name="search">
+                                    <input type="text" text="${saerch}" th:name="search">
                                 </td>
                                 <td>
                                     <div class="table-button-search">
