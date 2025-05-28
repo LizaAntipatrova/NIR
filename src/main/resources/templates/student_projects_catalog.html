@@ -288,9 +288,8 @@
                             <td>
                                 <div class="table-button-open-nir">
                                     <!-- <form th:action="@{/teacher/main/nir"} method="get"> -->
-                                    <form th:data-id="@{projectDTO.id}" method="get">
-                                        <button type="button">Открыть</button>
-                                    </form>
+                                    <!--<form th:action="@{/student/main/nir/{id}(id=${projectDTO.id})}" method="get">-->
+                                    <button class="open-nir" th:data-id="${projectDTO.id}">Открыть</button>
                                 </div>
                             </td>
                         </tr>
@@ -303,5 +302,15 @@
         </div>
 
     </div>
+<script>
+    // Обработка кнопки "Открыть"
+    document.querySelectorAll('.open-nir').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const nirId = this.getAttribute('data-id');
+            // Отправка ID заявки на сервер или переход на страницу заявки
+            window.location.href = '/student/main/nir?id=' + nirId;
+        });
+    });
+</script>
 </body>
 </html>

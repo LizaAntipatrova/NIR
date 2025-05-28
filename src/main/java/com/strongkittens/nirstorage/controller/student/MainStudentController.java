@@ -6,28 +6,29 @@ import com.strongkittens.nirstorage.uiservice.teacher.MainUITeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/student")
+@RequestMapping("/student/main")
 public class MainStudentController {
 
     private final ProjectCatalogService projectCatalogService;
     private final MainUIStudentService mainUIStudentService;
 
-    @GetMapping("/main")
+    @GetMapping("")
     public String showMainStudentForm(Model model) {
         return mainUIStudentService.getMainStudentForm(model);
     }
 
-    @PostMapping("/main/apply-filter")
+    @PostMapping("/apply-filter")
     public String applyFilter(@ModelAttribute("search") String filter, Model model) {
         return mainUIStudentService.getProjectsBySearch(filter, model);
     }
 
+    @GetMapping("/nir")
+    public String openProjectForm(@RequestParam("id") Long nirId, Model model) {
+        return mainUIStudentService.getProjectForm(nirId, model);
+    }
 
 }
