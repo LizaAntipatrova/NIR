@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class MainUITeacherService {
     }
 
     public String getProjectsBySearch(String filter, Model model) {
-        List<ProjectDTO> projectDTOs = projectCatalogService.findProjectsBySubstring(filter);
+        Set<ProjectDTO> projectDTOs = projectCatalogService.findProjectsBySubstring(filter);
         return "redirect:/teacher/main";
     }
 

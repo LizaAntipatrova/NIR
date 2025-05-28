@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +41,7 @@ public class MainUIStudentService {
     }
 
     public String getProjectsBySearch(String filter, RedirectAttributes redirectAttributes, Model model) {
-        List<ProjectDTO> projectDTOs = projectCatalogService.findProjectsBySubstring(filter);
+        Set<ProjectDTO> projectDTOs = projectCatalogService.findProjectsBySubstring(filter);
 
         redirectAttributes.addFlashAttribute("projectsList", projectDTOs);
         redirectAttributes.addFlashAttribute("search", filter);
