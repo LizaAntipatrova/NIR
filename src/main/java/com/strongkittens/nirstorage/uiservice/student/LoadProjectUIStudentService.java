@@ -44,7 +44,7 @@ public class LoadProjectUIStudentService {
         return "redirect:/student/main";
     }
 
-    public MultipartFile downloadFileByProjectId(Long nirId, Model model) {
+    public MultipartFile downloadFileByProjectId(Long nirId) {
         ProjectDTO projectDTO = projectManagementService.getProjectById(nirId);
         return projectDTO.getFile();
     }
