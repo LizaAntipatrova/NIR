@@ -9,6 +9,7 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -35,7 +36,7 @@ public class ProjectManagementService {
         project.setKeyWords(createProjectDTO.getKeyWords());
         project.setTeacher(teacherService.findTeacherById(createProjectDTO.getTeacherId()));
 
-        project.setStudents(createProjectDTO.getAuthorsId().stream().map(studentService::findStudentByUserId).toList());
+        project.setStudents(createProjectDTO.getAuthorsId().stream().map(studentService::findStudentByUserId).collect(Collectors.toList()));
 
         if (createProjectDTO.getGrade() != null) {
             project.setGrade(createProjectDTO.getGrade());
@@ -43,7 +44,7 @@ public class ProjectManagementService {
 
         project.setFile(createProjectDTO.getFile().getBytes());
 
-        projectService.save(project);
+        project = projectService.save(project);
     }
 
 
