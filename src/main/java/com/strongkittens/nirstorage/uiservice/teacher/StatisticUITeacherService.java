@@ -17,11 +17,10 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class StatisticUITeacherService {
-    private StatisticsService statisticsService;
-    private AuthService authService;
+    private final StatisticsService statisticsService;
+    private final AuthService authService;
 
     public String getStudentLoadProjectForm(Model model, String cookie) {
-
         return "teacher_statistic";
     }
 

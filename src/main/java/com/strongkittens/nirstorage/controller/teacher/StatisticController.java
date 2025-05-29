@@ -1,14 +1,18 @@
 package com.strongkittens.nirstorage.controller.teacher;
 
 import com.strongkittens.nirstorage.uiservice.teacher.StatisticUITeacherService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
 @RequestMapping("/teacher/statistic")
+@RequiredArgsConstructor
+@Controller
 public class StatisticController {
-    private StatisticUITeacherService statisticUITeacherService;
+    private final StatisticUITeacherService statisticUITeacherService;
 
     @GetMapping
     public String showStatisticForm(Model model, @RequestHeader("Cookie") String cookie) {

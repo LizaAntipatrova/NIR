@@ -239,8 +239,8 @@ canvas {
                             <div class="lable">Год</div>
                             <select class="selection" id="year">
                                 <option>-- Выберите год --</option>
-                                <option th:value="2024/"> 2024 </option>
-                                <option th:value="2025/"> 2025 </option>
+                                <option th:value="2024"> 2024 </option>
+                                <option th:value="2025"> 2025 </option>
                             </select>
                         </div>
                         <button type="submit" id="load-diagrams">Загрузить статистику</button>
@@ -274,8 +274,8 @@ canvas {
 
             const newInput = document.createElement('div');
             
-            const startDate = year + startsemestr;
-            const endDate = year + endsemestr;
+            const startDate = year + "/" + startsemestr;
+            const endDate = year + "/" + endsemestr;
 
             newInput.innerHTML = `
                 <input type="hidden" name="startDate" value="${startDate}">
