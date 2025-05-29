@@ -287,7 +287,7 @@ body {
                 </div>
                 <div class="data-row">
                     <div class="big-letters-lable">Автор(ы)</div>
-                    <select class="select-sudent"  id="authorName" th:field="*{authorsId}">
+                    <select class="select-sudent"  id="authorName" >
                         <option value="">--Выберите студента--</option>
                         <option th:each="student : ${listStudents}" th:value="${student.id}" th:text="${student.lastName + ' ' + student.firstName + ' ' + student.middleName}"></option>
                     </select>
@@ -335,6 +335,7 @@ body {
             const value = e.value;
             const authorName = e.options[e.selectedIndex].text;
 
+
             if (!authorName) {
                 alert('Заполните поле ФИО!');
                 return;
@@ -350,8 +351,10 @@ body {
                 <td>${authorIndex + 1}</td> 
                 <td>
                     ${authorName} 
-                    <input type="hidden" name="authorsNames[${authorIndex}]" value="${authorName}"> 
+                    
+                    <input type="hidden" name="authorsId" value="${value}">
                 </td>`; 
+                    // <input type="hidden" name="authorsNames[${authorIndex}]" value="${authorName}"> 
             
             tableBody.appendChild(newRow);
             authorIndex++;
