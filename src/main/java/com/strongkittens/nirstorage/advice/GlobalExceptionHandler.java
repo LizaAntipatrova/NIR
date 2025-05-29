@@ -42,16 +42,16 @@ public class GlobalExceptionHandler {
 //    }
 
     //
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<CustomErrorResponse> handleException(Exception ex, WebRequest request) {
-        CustomErrorResponse errorResponse = new CustomErrorResponse();
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
-        errorResponse.setError("holy shit");
-        errorResponse.setMessage(ex.getMessage());
-        errorResponse.setPath(request.getDescription(false));
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<CustomErrorResponse> handleException(Exception ex, WebRequest request) {
+//        CustomErrorResponse errorResponse = new CustomErrorResponse();
+//        errorResponse.setTimestamp(LocalDateTime.now());
+//        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+//        errorResponse.setError("holy shit");
+//        errorResponse.setMessage(ex.getMessage());
+//        errorResponse.setPath(request.getDescription(false));
+//        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+//    }
 
 
     //метод для обработки исключений
@@ -221,19 +221,19 @@ public class GlobalExceptionHandler {
 
         return "error_login";
     }*/
-//    @ExceptionHandler(RuntimeException.class)
-//    public String handleRuntimeException(RuntimeException ex, WebRequest request, Model model) {
-//        CustomErrorResponse errorResponse = new CustomErrorResponse();
-//        errorResponse.setTimestamp(LocalDateTime.now());
-//        errorResponse.setStatus(HttpStatus.SERVICE_UNAVAILABLE.value());
-//        errorResponse.setError("Попробуйте заново через 5 минут!");
-//        errorResponse.setMessage(ex.getMessage());
-//        errorResponse.setPath(request.getDescription(false));
-//
-//        model.addAttribute("errorMessage", errorResponse.getError());
-//        model.addAttribute("status", errorResponse.getStatus());
-//
-//        return "error";
-//    }
+    @ExceptionHandler(RuntimeException.class)
+    public String handleRuntimeException(RuntimeException ex, WebRequest request, Model model) {
+        CustomErrorResponse errorResponse = new CustomErrorResponse();
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setStatus(HttpStatus.SERVICE_UNAVAILABLE.value());
+        errorResponse.setError("Попробуйте заново через 5 минут!");
+        errorResponse.setMessage(ex.getMessage());
+        errorResponse.setPath(request.getDescription(false));
+
+        model.addAttribute("errorMessage", errorResponse.getError());
+        model.addAttribute("status", errorResponse.getStatus());
+
+        return "error";
+    }
 
 }

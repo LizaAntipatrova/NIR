@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CustomErrorController implements ErrorController {
 
     @RequestMapping("/error")
-    public void handleError(HttpServletRequest request) {
-
+    public String handleError(HttpServletRequest request) {
+        throw new RuntimeException();
     }
 
 }
