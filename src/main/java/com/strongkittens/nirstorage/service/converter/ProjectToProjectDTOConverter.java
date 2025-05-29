@@ -13,7 +13,7 @@ public class ProjectToProjectDTOConverter {
         projectDTO.setFile(
                 new ByteMultipartFile(
                         project.getFile(),
-                        project.getName(),
+                        project.getName() + ".pdf",
                         project.getName(),
                         "application/pdf"));
 

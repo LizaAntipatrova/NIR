@@ -2,6 +2,7 @@ package com.strongkittens.nirstorage.controller.teacher;
 
 import com.strongkittens.nirstorage.uiservice.teacher.StatisticUITeacherService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class StatisticController {
     }
 
     @PostMapping
-    public String getStatistic(Model model, @RequestHeader("Cookie") String cookie, @ModelAttribute("startDate") LocalDate startDate, @ModelAttribute("endDate") LocalDate endDate) {
+    public String getStatistic(Model model, @RequestHeader("Cookie") String cookie, @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate, @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate) {
         return statisticUITeacherService.postStudentLoadProject(model, cookie, startDate, endDate);
     }
 }

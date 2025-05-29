@@ -103,7 +103,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
-    max-height: 170px;
+    max-height: 250px;
     gap: 15px;
 }
 
@@ -223,24 +223,24 @@ canvas {
                 </div>
             </nav>
 
-            <form th:action="@{/teacher/statistic}" method="post">
+            <form th:action="@{/teacher/statistic}" method="post" id="statisticsForm">
 
                 <div class="statistic-container">
                     <div class="date-input">
                         <div>
                             <div class="lable">Семестр:</div>
-                            <select class="selection" id="months">
-                                <option>-- Выберите семестр --</option>
-                                <option th:startsemestr="09/01" th:endsemestr="12/31">Осенний семестр</option>
-                                <option th:startsemestr="01/01" th:endsemestr="08/31">Весенний семестр</option>
+                            <select class="selection" id="semester" name="semester">
+                                <option value="">-- Выберите семестр --</option>
+                                <option value="autumn">Осенний семестр</option>
+                                <option value="spring">Весенний семестр</option>
                             </select>
                         </div>
                         <div>
                             <div class="lable">Год</div>
-                            <select class="selection" id="year">
-                                <option>-- Выберите год --</option>
-                                <option th:value="2024"> 2024 </option>
-                                <option th:value="2025"> 2025 </option>
+                            <select class="selection" id="year" name="year">
+                                <option value="">-- Выберите год --</option>
+                                <option th:value="2024">2024</option>
+                                <option th:value="2025">2025</option>
                             </select>
                         </div>
                         <button type="submit" id="load-diagrams">Загрузить статистику</button>
@@ -264,25 +264,65 @@ canvas {
     </div>
 
     <script>
-        document.getElementById('load-diagrams').addEventListener('click', () => {
-            const e = document.getElementById('months');
-            const startsemestr = e.getAttribute('startsemestr');
-            const endsemestr = e.getAttribute('endsemestr');
+        // document.getElementById('load-diagrams').addEventListener('click', () => {
+        //     const e = document.getElementById('months');
+        //     const startsemestr = e.getAttribute('startsemestr');
+        //     const endsemestr = e.getAttribute('endsemestr');
+        //
+        //     const e2 = document.getElementById('year');
+        //     const year = e2.value;
+        //
+        //     const newInput = document.createElement('div');
+        //
+        //     const startDate = year + "/" + startsemestr;
+        //     const endDate = year + "/" + endsemestr;
+        //
+        //     newInput.innerHTML = `
+        //         <input type="hidden" name="startDate" value="${startDate}">
+        //         <input type="hidden" name="startDate" value="${endDate}">
+        //     `;
+        //
+        //     button = document.getElementById('load-diagrams').appendChild(newInput);
+        // });
+        document.getElementById('statisticsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-            const e2 = document.getElementById('year');
-            const year = e2.value;
+            const year = document.getElementById('year').value;
+            const semester = document.getElementById('semester').value;
 
-            const newInput = document.createElement('div');
-            
-            const startDate = year + "/" + startsemestr;
-            const endDate = year + "/" + endsemestr;
+            if (!year || !semester) {
+                alert('Пожалуйста, выберите год и семестр');
+                return;
+            }
 
-            newInput.innerHTML = `
-                <input type="hidden" name="startDate" value="${startDate}">
-                <input type="hidden" name="startDate" value="${endDate}">
-            `;
+            let startDate, endDate;
 
-            button = document.getElementById('load-diagrams').appendChild(newInput);
+            if (semester === 'autumn') {
+                startDate = `${year}-09-01`;
+                endDate = `${year}-12-31`;
+            } else {
+                startDate = `${year}-02-01`;
+                endDate = `${year}-05-31`;
+            }
+
+            // Создаем скрытые поля для дат
+            const form = e.target;
+
+            const startInput = document.createElement('input');
+            startInput.type = 'hidden';
+            startInput.name = 'startDate';
+            startInput.value = startDate;
+
+            const endInput = document.createElement('input');
+            endInput.type = 'hidden';
+            endInput.name = 'endDate';
+            endInput.value = endDate;
+
+            form.appendChild(startInput);
+            form.appendChild(endInput);
+
+            // Отправляем форму
+            form.submit();
         });
     </script>
 </body>

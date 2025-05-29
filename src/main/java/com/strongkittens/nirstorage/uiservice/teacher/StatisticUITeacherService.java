@@ -27,13 +27,9 @@ public class StatisticUITeacherService {
     public String postStudentLoadProject(Model model, String cookie, LocalDate startDate, LocalDate endDate) {
         Long teacherId = authService.getUserIdFromCookie(cookie);
         int countAllProject = statisticsService.getProjectsDatesOverPeriodTime(startDate, endDate);
-        Map<Integer, Long> allGrades = statisticsService.getTeacherProjectsGradeOverPeriodTime(teacherId, startDate, endDate);
         int countTeacherProject = statisticsService.getTeachersProjectsDatesOverPeriodTime(teacherId, startDate, endDate);
-        Map<Integer, Long> teacherGrades = statisticsService.getTeacherProjectsGradeOverPeriodTime(teacherId, startDate, endDate);
         model.addAttribute("countAllProject", countAllProject);
-        model.addAttribute("allGrades", allGrades);
         model.addAttribute("countTeacherProject", countTeacherProject);
-        model.addAttribute("teacherGrades", teacherGrades);
-        return "redirect:/student/main";
+        return "teacher_statistic";
     }
 }
