@@ -281,7 +281,8 @@
                         </tr>
                     </thead>
                     <tbody class="table-body">
-                        <tr th:each="projectDTO : ${projectsList}" th:if="${!projectsList.empty}">
+                        <tr th:each="projectDTO : ${projectsList}" th:if="${!projectsList.empty}"
+                            class="project-row" th:attr="data-date=${projectDTO.publicationDate}">
                             <td th:text = "${projectDTO.name}"></td>
                             <td th:each=" authorName : ${projectDTO.authorsNames}" th:text += "${authorName} + ' '"></td>
                             <td th:text = "${projectDTO.publicationDate}"></td>
@@ -311,6 +312,55 @@
             window.location.href = 'nir?id=' + nirId;
         });
     });
-</script>
+
+         // Функция для фильтрации таблицы по датам
+        function filterProjects() {
+            const startDate = document.getElementById('startDateFilter').value;
+            const endDate = document.getElementById('endDateFilter').value;
+
+            const rows = document.querySelectorAll('tbody tr.project-row');
+            let hasVisibleRows = false;
+
+            rows.forEach(row => {
+                const rowDate = row.getAttribute('data-date');
+
+                // Проверка даты
+                let dateInRange = true;
+                if (startDate && rowDate < startDate) {
+                    dateInRange = false;
+                }
+                if (endDate && rowDate > endDate) {
+                    dateInRange = false;
+                }
+
+                // Показываем/скрываем строку
+                if (dateInRange) {
+                    row.style.display = '';
+                    hasVisibleRows = true;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            // Обработка случая, когда нет подходящих проектов
+            const emptyRow = document.querySelector('.empty-row');
+            if (emptyRow) {
+                if (!hasVisibleRows && rows.length > 0) {
+                    emptyRow.style.display = '';
+                } else {
+                    emptyRow.style.display = 'none';
+                }
+            }
+        }
+
+        // Назначение обработчиков событий для автоматической фильтрации
+        document.getElementById('startDateFilter').addEventListener('change', filterProjects);
+        document.getElementById('endDateFilter').addEventListener('change', filterProjects);
+
+        // Инициализация фильтра при загрузке страницы
+        document.addEventListener('DOMContentLoaded', filterProjects);
+
+    </script>
+
 </body>
 </html>
