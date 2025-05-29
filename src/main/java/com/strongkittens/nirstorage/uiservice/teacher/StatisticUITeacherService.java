@@ -22,7 +22,7 @@ public class StatisticUITeacherService {
 
     public String getStudentLoadProjectForm(Model model, String cookie) {
 
-        return "statistic";
+        return "teacher_statistic";
     }
 
     public String postStudentLoadProject(Model model, String cookie, LocalDate startDate, LocalDate endDate) {
