@@ -39,4 +39,6 @@ public class TeacherNirController {
                 .contentType(MediaType.parseMediaType(file.getContentType()))
                 .body(file.getBytes());
     }
+
+    //TODO: контроллер для оценки
 }

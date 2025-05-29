@@ -307,7 +307,9 @@ body {
             <div class="title">НИР 3000</div>
 
             <div class="nav-elem">
-                <button th:formaction="@{/teacher/profile}" type="submit" th:formmethod="get">Профиль</button>
+                <form th:action="@{/teacher/profile}" method="get">
+                    <button type="submit">Профиль</button>
+                </form>
                 <button onclick="history.back()">Назад к списку</button>
             </div>
         </nav>
@@ -323,19 +325,21 @@ body {
                     <h2 class="section-title">Руководитель:</h2>
                     <div th:text="${projectDTO.teacherName}">Иванов И.И.</div>
                 </div>
-                <div th:if="${projectDTO.grade != null}" class="grade-elem" >
+                <div class="grade-elem" >
                     <div class="left-grade-part">
                         <h2 class="section-title">Оценка:</h2> 
                         <span class="grade-value" th:text="${projectDTO.grade}">5</span>
                     </div>
-                    <div class="right-grade-part">
+                    <div   class="right-grade-part">
                         <select class="grade-select" th:name="grade">
                             <option >-- Выберите оценку --</option>
                             <option th:value="3">3 (Удовлетворительно)</option>
                             <option th:value="4">4 (Хорошо)</option>
                             <option th:value="5">5 (Отлично)</option>
                         </select>
-                        <button th:formaction="/teacher/savegrade" type="submit" th:formmethod="post">Выставить оценку</button>
+
+                        <!--СТОИТ НЕПРАВИЛЬНЫЙ МАППИНГ! НАДО ЧЕРЕЗ NIR (СМ. student_project_look стр. 265, 290-295)-->
+                        <button class="savegrade" th:grade-id="${projectDTO.id}">Выставить оценку</button>
                     </div>
                 </div>
                 <div class="info-elem">
@@ -344,10 +348,8 @@ body {
                 </div>
                 <div class="info-elem">
                     <h2 class="section-title">Файл работы</h2>
-                    <a th:if="${projectDTO.file != null}"
-                        th:href="@{'/download/' + ${projectDTO.id}}"
-                        class="file-download">
-                        Скачать файл
+                    <a th:if="${projectDTO.file != null}">
+                        <button class="file-download" th:download-id="${projectDTO.id}">Скачать</button>
                     </a>
                     <div th:if="${projectDTO.file == null}" class="info-value">
                         Файл не прикреплен
@@ -375,5 +377,18 @@ body {
     </form>
 
 </div>
+<script>
+    // Обработка кнопки "Скачать файл"
+    document.querySelector('.file-download').addEventListener('click', function() {
+        const nirId = this.getAttribute('download-id');
+        window.location.href = 'nir/download?id=' + nirId;
+    });
+
+    // Обработка кнопки "Выставить оценку"
+    document.querySelector('.savegrade').addEventListener('click', function() {
+        const nirId = this.getAttribute('grade-id');
+        window.location.href = 'nir/savegrade?id=' + nirId;
+    });
+</script>
 </body>
 </html>

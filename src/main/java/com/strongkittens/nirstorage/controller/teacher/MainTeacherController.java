@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/teacher")
+@RequestMapping("/teacher/main")
 public class MainTeacherController {
     private final ProjectCatalogService projectCatalogService;
     private final MainUITeacherService mainUITeacherService;
 
 
-    @GetMapping("/main")
+    @GetMapping("")
     public String showMainTeacherForm(Model model) {
         return mainUITeacherService.getMainTeacherForm(model);
     }
 
-    @PostMapping("/main/apply-filter")
+    @PostMapping("/apply-filter")
     public String applyFilter(@ModelAttribute("search") String filter, Model model) {
         return mainUITeacherService.getProjectsBySearch(filter, model);
     }
