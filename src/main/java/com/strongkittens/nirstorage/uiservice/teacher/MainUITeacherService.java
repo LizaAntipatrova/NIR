@@ -7,6 +7,7 @@ import com.strongkittens.nirstorage.service.ProjectManagementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Set;
@@ -21,14 +22,20 @@ public class MainUITeacherService {
 
     public String getMainTeacherForm(Model model) {
         List<ProjectDTO> projectDTOs = projectCatalogService.getAllProjects();
-        model.addAttribute("projectsList", projectDTOs);
-        model.addAttribute("search", new String());
+        if (!model.containsAttribute("projectsList")) {
+            model.addAttribute("projectsList", projectDTOs);
+        }
+        if (!model.containsAttribute("search")) {
+            model.addAttribute("search", new String());
+        }
 
         return "teacher_project_catalog";
     }
 
-    public String getProjectsBySearch(String filter, Model model) {
+    public String getProjectsBySearch(String filter, Model model,  RedirectAttributes redirectAttributes) {
         Set<ProjectDTO> projectDTOs = projectCatalogService.findProjectsBySubstring(filter);
+        redirectAttributes.addFlashAttribute("projectsList", projectDTOs);
+        redirectAttributes.addFlashAttribute("search", filter);
         return "redirect:/teacher/main";
     }
 
