@@ -15,10 +15,8 @@ import java.util.stream.Collectors;
 public class StatisticsService {
     private final ProjectService projectService;
 
-    public List<LocalDate> getProjectsDatesOverPeriodTime(LocalDate startDate, LocalDate endDate) {
-        return projectService.getProjectsByPublicationDateBetweenDates(startDate, endDate).stream()
-                .map(Project::getPublicationDate)
-                .toList();
+    public int getProjectsDatesOverPeriodTime(LocalDate startDate, LocalDate endDate) {
+        return projectService.getProjectsByPublicationDateBetweenDates(startDate, endDate).size();
     }
 
     public Map<Integer, Long> getProjectsGradeOverPeriodTime(LocalDate startDate, LocalDate endDate) {
@@ -28,10 +26,8 @@ public class StatisticsService {
 
     }
 
-    public List<LocalDate> getTeachersProjectsDatesOverPeriodTime(Long userId, LocalDate startDate, LocalDate endDate) {
-        return projectService.getTeacherProjectsByPublicationDateBetweenDates(userId, startDate, endDate).stream()
-                .map(Project::getPublicationDate)
-                .toList();
+    public int getTeachersProjectsDatesOverPeriodTime(Long userId, LocalDate startDate, LocalDate endDate) {
+        return projectService.getTeacherProjectsByPublicationDateBetweenDates(userId, startDate, endDate).size();
     }
 
     public Map<Integer, Long> getTeacherProjectsGradeOverPeriodTime(Long userId, LocalDate startDate, LocalDate endDate) {
