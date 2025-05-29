@@ -253,7 +253,7 @@
                         <tr th:each="projectDTO : ${projectsList}" th:if="${!projectsList.empty}">
                             <td th:text = "${projectDTO.name}"></td>
                             <td th:text = "${projectDTO.publicationDate}"></td>
-                            <td th:each=" authorName : ${projectDTO.authorsNames}" th:text += "${authorName} + ' '"></td>
+                            <td id="authorsNames" th:text="${#strings.listJoin(projectDTO.authorsNames, ', ')}"></td>
                             <td>
                                 <div class="table-button-open-nir">
                                     <!-- <form th:action="@{/teacher/main/nir"} method="get"> -->
