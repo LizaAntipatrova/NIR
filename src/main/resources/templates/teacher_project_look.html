@@ -307,9 +307,8 @@ body {
             <div class="title">НИР 3000</div>
 
             <div class="nav-elem">
-                <form th:action="@{/teacher/profile}" method="get">
-                    <button type="submit">Профиль</button>
-                </form>
+                    <button th:formaction="@{/teacher/profile}" formmethod="get" type="submit">Профиль</button>
+
                 <button onclick="history.back()">Назад к списку</button>
             </div>
         </nav>
@@ -339,7 +338,7 @@ body {
                         </select>
 
                         <!--СТОИТ НЕПРАВИЛЬНЫЙ МАППИНГ! НАДО ЧЕРЕЗ NIR (СМ. student_project_look стр. 265, 290-295)-->
-                        <button class="savegrade" th:grade-id="${projectDTO.id}">Выставить оценку</button>
+                        <button type="submit" class="savegrade" th:formaction="@{/teacher/nir?id={id}(id=${projectDTO.id})}" th:grade-id="${projectDTO.id}" th:formmethod="post">Выставить оценку</button>
                     </div>
                 </div>
                 <div class="info-elem">
@@ -349,7 +348,7 @@ body {
                 <div class="info-elem">
                     <h2 class="section-title">Файл работы</h2>
                     <a th:if="${projectDTO.file != null}">
-                        <button class="file-download" th:download-id="${projectDTO.id}">Скачать</button>
+                        <button class="file-download" th:download-id="${projectDTO.id}" >Скачать</button>
                     </a>
                     <div th:if="${projectDTO.file == null}" class="info-value">
                         Файл не прикреплен
@@ -384,11 +383,12 @@ body {
         window.location.href = 'nir/download?id=' + nirId;
     });
 
-    // Обработка кнопки "Выставить оценку"
-    document.querySelector('.savegrade').addEventListener('click', function() {
-        const nirId = this.getAttribute('grade-id');
-        window.location.href = 'nir/savegrade?id=' + nirId;
-    });
+    // // Обработка кнопки "Выставить оценку"
+    // document.querySelector('.savegrade').addEventListener('click', function() {
+    //     const nirId = this.getAttribute('grade-id');
+    //
+    //     window.location.href = 'nir?id=' + nirId;
+    // });
 </script>
 </body>
 </html>
