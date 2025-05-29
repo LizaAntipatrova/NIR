@@ -224,7 +224,7 @@
             <div class="title">НИР 3000</div>
             
             <div class="nav-elem">
-                <form th:action="@{/teacher/main/statistic}" method="get">
+                <form th:action="@{/teacher/statistic}" method="get">
                     <button type="submit">Статистика</button>
                 </form>
                 <form th:action="@{/teacher/profile}" method="get">
@@ -284,7 +284,7 @@
                         <tr th:each="projectDTO : ${projectsList}" th:if="${!projectsList.empty}"
                             class="project-row" th:attr="data-date=${projectDTO.publicationDate}">
                             <td th:text = "${projectDTO.name}"></td>
-                            <td th:each=" authorName : ${projectDTO.authorsNames}" th:text += "${authorName} + ' '"></td>
+                            <td id="authorsNames" th:text="${#strings.listJoin(projectDTO.authorsNames, ', ')}"></td>
                             <td th:text = "${projectDTO.publicationDate}"></td>
                             <td th:text = "${projectDTO.teacherName}"></td>
                             <td>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Просмотр НИР</title>
+    <style>
+        :root {
+            --primary: #306DBD;
+            --secondary: #6C757D;
+            --light-blue: #AECCE6;
+            --purple: #8D2D9C;
+            --orange: #FF9D00;
+            --white: #FFFFFF;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-blue);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navigation-bar {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navigation-bar .title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .nav-elem {
+            display: flex;
+            gap: 16px;
+        }
+
+        .nav-elem button {
+            background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-elem button:hover {
+            background-color: #e08d00;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 25px;
+            width: 90%;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+            box-sizing: border-box;
+        }
+
+        .project-info-container,
+        .project-lists-container {
+            flex: 1;
+            min-width: 0;
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .project-title {
+            color: var(--primary);
+            font-size: 26px;
+            font-weight: 600;
+            margin: 0;
+            word-break: break-word;
+        }
+
+        .info-elem {
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            color: var(--primary);
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .data-input-description {
+            width: 100%;
+            min-height: 140px;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+            background-color: var(--white);
+            color: var(--secondary);
+            resize: none;
+        }
+
+        .authors-list,
+        .keywords-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .author-tag,
+        .keyword-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .author-tag {
+            background-color: var(--light-blue);
+            color: var(--primary);
+        }
+
+        .keyword-tag {
+            background-color: #E6E6FA;
+            color: var(--purple);
+        }
+
+        .project-card {
+            margin-top: auto;
+            padding: 12px;
+            background-color: var(--white);
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .grade-display {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--purple);
+            text-align: center;
+        }
+
+        .file-download {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: var(--orange);
+            color: var(--white);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .file-download:hover {
+            background-color: #e08d00;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* Стиль для блока с оценкой */
+        .grade-elem {
+            background-color: rgba(141, 45, 156, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--orange);
+        }
+
+        .grade-elem .section-title {
+            color: var(--orange);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .grade-value {
+            display: inline-block;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--orange);
+            background-color: var(--white);
+            padding: 5px 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 5px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 191, 54, 0.4);
+            }
+            to {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(141, 45, 156, 0);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <nav class="navigation-bar">
+        <div class="title">НИР 3000</div>
+
+        <div class="nav-elem">
+            <form th:action="@{/teacher/profile}" method="get">
+                <button type="submit">Профиль</button>
+            </form>
+            <button onclick="history.back()">Назад к списку</button>
+        </div>
+    </nav>
+
+    <div class="project-container">
+        <div class="project-info-container">
+            <h1 class="project-title" th:text="${projectDTO.name}">Название НИР</h1>
+            <div class="info-elem">
+                <h2 class="section-title">Дата публикации:</h2>
+                <div th:text="${projectDTO.publicationDate}">2023-01-01</div>
+            </div>
+            <div class="info-elem">
+                <h2 class="section-title">Руководитель:</h2>
+                <div th:text="${projectDTO.teacherName}">Иванов И.И.</div>
+            </div>
+            <div th:if="${projectDTO.grade != null}" class="grade-elem" >
+                <h2 class="section-title">Оценка:</h2>
+                <span class="grade-value" th:text="${projectDTO.grade}"></span>
+            </div>
+            <div class="info-elem">
+                <h2 class="section-title">Описание</h2>
+                <textarea class="data-input-description" disabled="true" th:text="${projectDTO.description}"></textarea>
+            </div>
+            <div class="info-elem">
+                <h2 class="section-title">Файл работы</h2>
+                <a th:if="${projectDTO.file != null}">
+                    <button class="file-download" th:download-id="${projectDTO.id}">Скачать</button>
+                </a>
+                <div th:if="${projectDTO.file == null}" class="info-value">
+                    Файл не прикреплен
+                </div>
+            </div>
+        </div>
+
+        <div class="project-lists-container">
+            <h2 class="section-title">Авторы</h2>
+            <div class="authors-list">
+                    <span th:each="author : ${projectDTO.authorsNames}"
+                          class="author-tag"
+                          th:text="${author}">Автор 1</span>
+            </div>
+
+            <h2 class="section-title">Ключевые слова</h2>
+            <div class="keywords-list">
+                    <span th:each="keyword : ${#strings.arraySplit(projectDTO.keyWords, ',')}"
+                          class="keyword-tag"
+                          th:text="${#strings.trim(keyword)}">ключевое слово</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Обработка кнопки "Скачать файл"
+    document.querySelector('.file-download').addEventListener('click', function() {
+        const nirId = this.getAttribute('download-id');
+        window.location.href = 'nir/download?id=' + nirId;
+    });
+
+
+</script>
+</body>
+</html>

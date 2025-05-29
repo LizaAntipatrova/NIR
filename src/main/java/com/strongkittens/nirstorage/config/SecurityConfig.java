@@ -30,7 +30,7 @@ public class SecurityConfig {
         registrationBean.setFilter(sessionExistFilter());
         // описано в фильтрах
 
-        registrationBean.addUrlPatterns("/auth/logout", "/manager/*", "/client/*", "/guardofficer/*");
+        registrationBean.addUrlPatterns("/auth/logout", "/student/*", "/teacher/*");
         registrationBean.setOrder(1);
         return registrationBean;
     }

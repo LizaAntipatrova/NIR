@@ -36,6 +36,7 @@ public class ProjectDTO {
     private String description;
 
     private String keyWords;
+    private Long teacherId;
 
     private String teacherName;
     private List<String> authorsNames;
