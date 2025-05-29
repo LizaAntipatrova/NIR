@@ -1,45 +1,50 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.4.5'
-	id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'org.springframework.boot' version '3.4.5'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.strongKittens'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	testImplementation 'org.junit.jupiter:junit-jupiter-api'
-
-	// https://mvnrepository.com/artifact/org.liquibase/liquibase-core
-	implementation("org.liquibase:liquibase-core")
-	// https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api
-	implementation("jakarta.validation:jakarta.validation-api")
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+	// https://mvnrepository.com/artifact/org.redisson/redisson
+    implementation'org.redisson:redisson:3.46.0'
+    // https://mvnrepository.com/artifact/org.liquibase/liquibase-core
+    implementation'org.liquibase:liquibase-core'
+    // https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api
+    implementation'jakarta.validation:jakarta.validation-api'
+//    // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
+//    implementation 'org.thymeleaf:thymeleaf:3.1.2.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.4.3'
 }
 
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

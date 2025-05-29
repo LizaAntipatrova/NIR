@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1748463704161-21" author="natul">
+        <dropForeignKeyConstraint baseTableName="project_contributors" constraintName="fk_pc_project"/>
+    </changeSet>
+    <changeSet id="1748463704161-22" author="natul">
+        <dropForeignKeyConstraint baseTableName="project_contributors" constraintName="fk_pc_student"/>
+    </changeSet>
+    <changeSet id="1748463704161-19" author="natul">
+        <addForeignKeyConstraint baseColumnNames="student_id" baseTableName="project_contributors"
+                                 constraintName="fk_procon_on_project" referencedColumnNames="id"
+                                 referencedTableName="project"/>
+    </changeSet>
+    <changeSet id="1748463704161-20" author="natul">
+        <addForeignKeyConstraint baseColumnNames="project_id" baseTableName="project_contributors"
+                                 constraintName="fk_procon_on_student" referencedColumnNames="id"
+                                 referencedTableName="student"/>
+    </changeSet>
+    <changeSet id="1748463704161-23" author="natul">
+        <dropPrimaryKey constraintName="project_contributors_pkey" tableName="project_contributors"/>
+    </changeSet>
+    <changeSet id="1748463704161-1" author="natul">
+        <modifyDataType columnName="description" newDataType="VARCHAR(255)" tableName="project"/>
+    </changeSet>
+    <changeSet id="1748463704161-2" author="natul">
+        <modifyDataType columnName="first_name" newDataType="VARCHAR(255)" tableName="student"/>
+    </changeSet>
+    <changeSet id="1748463704161-3" author="natul">
+        <modifyDataType columnName="first_name" newDataType="VARCHAR(255)" tableName="teacher"/>
+    </changeSet>
+    <changeSet id="1748463704161-4" author="natul">
+        <modifyDataType columnName="group_name" newDataType="VARCHAR(255)" tableName="student"/>
+    </changeSet>
+    <changeSet id="1748463704161-5" author="natul">
+        <modifyDataType columnName="job" newDataType="VARCHAR(255)" tableName="teacher"/>
+    </changeSet>
+    <changeSet id="1748463704161-6" author="natul">
+        <modifyDataType columnName="key_words" newDataType="VARCHAR(255)" tableName="project"/>
+    </changeSet>
+    <changeSet id="1748463704161-7" author="natul">
+        <modifyDataType columnName="last_name" newDataType="VARCHAR(255)" tableName="student"/>
+    </changeSet>
+    <changeSet id="1748463704161-8" author="natul">
+        <modifyDataType columnName="last_name" newDataType="VARCHAR(255)" tableName="teacher"/>
+    </changeSet>
+    <changeSet id="1748463704161-9" author="natul">
+        <modifyDataType columnName="middle_name" newDataType="VARCHAR(255)" tableName="student"/>
+    </changeSet>
+    <changeSet id="1748463704161-10" author="natul">
+        <modifyDataType columnName="middle_name" newDataType="VARCHAR(255)" tableName="teacher"/>
+    </changeSet>
+    <changeSet id="1748463704161-11" author="natul">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="name" tableName="project"/>
+    </changeSet>
+    <changeSet id="1748463704161-12" author="natul">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="password" tableName="user"/>
+    </changeSet>
+    <changeSet id="1748463704161-13" author="natul">
+        <modifyDataType columnName="phone" newDataType="VARCHAR(255)" tableName="student"/>
+    </changeSet>
+    <changeSet id="1748463704161-14" author="natul">
+        <modifyDataType columnName="phone" newDataType="VARCHAR(255)" tableName="teacher"/>
+    </changeSet>
+    <changeSet id="1748463704161-15" author="natul">
+        <modifyDataType columnName="role" newDataType="VARCHAR(255)" tableName="user"/>
+    </changeSet>
+    <changeSet id="1748463704161-16" author="natul">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="role" tableName="user"/>
+    </changeSet>
+    <changeSet id="1748463704161-17" author="natul">
+        <dropNotNullConstraint columnDataType="bigint" columnName="user_id" tableName="student"/>
+    </changeSet>
+    <changeSet id="1748463704161-18" author="natul">
+        <dropNotNullConstraint columnDataType="bigint" columnName="user_id" tableName="teacher"/>
+    </changeSet>
+
+</databaseChangeLog>

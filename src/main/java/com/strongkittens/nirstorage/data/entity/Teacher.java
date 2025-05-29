@@ -23,13 +23,15 @@ public class Teacher {
     private String firstName;
     private String middleName;
     private String phone;
-    private String group;
     @Enumerated(value = EnumType.STRING)
     private Job job;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
     private List<Project> projects;
+
+
 }
