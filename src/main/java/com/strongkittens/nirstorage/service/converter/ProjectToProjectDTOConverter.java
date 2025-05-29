@@ -18,6 +18,7 @@ public class ProjectToProjectDTOConverter {
                         "application/pdf"));
 
         projectDTO.setGrade(project.getGrade());
+        projectDTO.setTeacherId(project.getTeacher().getUser().getId());
 
         projectDTO.setTeacherName(getFullName(project.getTeacher().getFirstName(),
                 project.getTeacher().getLastName(), project.getTeacher().getMiddleName()));
