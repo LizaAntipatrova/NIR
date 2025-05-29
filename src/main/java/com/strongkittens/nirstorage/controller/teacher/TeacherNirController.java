@@ -9,9 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -26,8 +24,8 @@ public class TeacherNirController {
 
     //открыть проект
     @GetMapping()
-    public String openProjectForm(@RequestParam("id") Long nirId, Model model) {
-        return mainUITeacherService.getProjectForm(nirId, model);
+    public String openProjectForm(@RequestParam("id") Long nirId, Model model, @RequestHeader("Cookie") String cookie) {
+        return mainUITeacherService.getProjectForm(nirId, model, cookie);
     }
 
     //скачать pdf из проекта
@@ -40,5 +38,10 @@ public class TeacherNirController {
                 .body(file.getBytes());
     }
 
-    //TODO: контроллер для оценки
+
+
+    @PostMapping()
+    public String giveGrade(@RequestParam Long id, @ModelAttribute("grade") Integer grade){
+        return mainUITeacherService.postGiveGrade(id, grade);
+    }
 }
